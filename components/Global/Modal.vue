@@ -32,43 +32,50 @@
                   <span class="sr-only">Close Modal</span>
                 </button>
 
-                <div class="header mb-20">
-                  <GlobalHero :project="project" class="mb-40" />
+                <div class="container">
+                  <PartialsHero :project="project" />
                 </div>
-                <div class="container body">
-                  <GlobalTech :skills="project.tech" class="mb-80 black" />
-
-                  <div class="company mb-80" v-if="project.description">
-                    <div class="paragraph mb-20">
-                      <h3><u>ABOUT THE PROJECT</u></h3>
-                    </div>
-                    <div class="paragraph mb-40">
-                      <SanityContent :blocks="project.description" />
-                    </div>
-                    <a
-                      :href="project.website"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="website paragraph-small button button-black"
-                      v-if="project.website"
-                      >Visit the Site</a
+                <section
+                  class="tab-section"
+                  :class="{ 'bg-black': activeTab === 0 }"
+                >
+                  <div class="tablist" role="tablist" ref="tabRef">
+                    <button
+                      v-for="(item, index) in items"
+                      role="tab"
+                      class="project-tab tab paragraph bold text-center text-white"
+                      :id="'project-tab-' + index"
+                      :class="{ active: index === activeTab }"
+                      :aria-selected="
+                        index === activeTab ? true : false.toString()
+                      "
+                      :key="`buttontab${index}`"
+                      :aria-controls="'grid-panel-' + index"
+                      :tabindex="index === activeTab ? 0 : -1"
+                      @keyup.right="arrowFocus('right')"
+                      @keyup.left="arrowFocus('left')"
+                      @click="activeTab = index"
                     >
+                      <span> {{ item.title }}</span>
+                    </button>
                   </div>
-
-                  <div class="video-container mb-80" v-if="project.video">
-                    <SanityFile :asset-id="project.video.asset._ref">
-                      <template #default="{ src }">
-                        <video playsinline muted loop controls>
-                          <source :src="src" type="video/mp4" />
-                        </video>
-                      </template>
-                    </SanityFile>
-                    <p class="paragraph-small">
-                      Short snippet of the presentation
-                    </p>
+                  <div class="container">
+                    <div
+                      v-for="(panel, index) in items"
+                      v-show="index === activeTab"
+                      :id="'grid-panel-' + index"
+                      :key="`paneltab${index}`"
+                      role="tabpanel"
+                      class="tabpanel"
+                      :aria-labelledby="'project-tab-' + index"
+                    >
+                      <div class="panel-wrapper" v-show="index === activeTab">
+                        <component :is="panel.content" :project="project">
+                        </component>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <BlocksThumbnails :project="project" />
+                </section>
               </div>
             </div>
           </GlobalFocusTrap>
@@ -84,6 +91,45 @@ const props = defineProps({
     type: Object,
   },
 });
+
+const activeTab = ref(0);
+const tabRef = ref(null);
+const items = [
+  {
+    title: "Screens",
+    content: "PartialsThumbnails",
+  },
+  {
+    title: "About the Project",
+    content: `PartialsProjectDescription`,
+  },
+];
+
+const arrowFocus = (direction) => {
+  let currentFocus = document.activeElement.getAttribute("id");
+  let currentIndex = parseInt(currentFocus.charAt(currentFocus.length - 1));
+  let tabs = tabRef.value.querySelectorAll(".project-tab");
+
+  let nextFocus;
+  tabs.forEach((item, index) => {
+    if (index === currentIndex) {
+      if (direction === "right") {
+        if (index >= 0 && index < tabs.length - 1) {
+          nextFocus = index + 1;
+        } else {
+          nextFocus = 0;
+        }
+      } else if (direction === "left") {
+        if (index > 0) {
+          nextFocus = index - 1;
+        } else {
+          nextFocus = tabs.length - 1;
+        }
+      }
+    }
+  });
+  document.getElementById(`project-tab-${nextFocus}`).focus();
+};
 
 const open = ref(false);
 const triggerRef = ref(null);
@@ -184,19 +230,6 @@ const handleModal = (val) => {
     width: 100%;
   }
 
-  // .h2-large {
-  //   display: inline;
-  //   background: $black;
-  //   color: $white;
-  //   padding: 0 20px;
-  //   box-decoration-break: clone;
-  //   -webkit-box-decoration-break: clone;
-  // }
-
-  .container {
-    // max-width: 1000px;
-  }
-
   &.modalTransition-enter-active,
   &.modalTransition-leave-active {
     transition: transform 0.7s ease;
@@ -212,15 +245,42 @@ const handleModal = (val) => {
     transform: translate3d(0, 0, 0);
   }
 
-  .body {
+  .container {
     max-width: 65rem;
-    margin: 0 auto;
   }
 
-  .tech {
+  .tablist {
     display: flex;
-    flex-wrap: wrap;
+    > button {
+      color: $white;
+      width: 50%;
+      background: $green;
+      padding: 0.7em 1em;
 
+      span {
+        display: inline-block;
+        transition: 0.4s ease;
+        transform: scale(0.9);
+      }
+      &.active {
+        background: $white;
+        border: 2px solid $green;
+        color: $black;
+        span {
+          transform: scale(1);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .tab-section {
+    &.bg-black {
+      background: $black;
+    }
+  }
+  .panel-wrapper {
+    padding: 50px 0 100px;
   }
 }
 </style>

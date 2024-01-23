@@ -2,7 +2,7 @@
   <section class="block-padding text-white">
     <div class="container">
         <h2 class="h2 mb-40 text-center">{{ block.title }}</h2>
-        <GlobalTech :skills="block.skills" animate />
+        <PartialsTech :skills="block.skills" animate />
     </div>
   </section>
 </template>

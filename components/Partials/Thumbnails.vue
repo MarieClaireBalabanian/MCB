@@ -1,5 +1,5 @@
 <template>
-  <section class="block-thumbnails bg-black block-padding" ref="blockRef">
+  <section class="thumbnails" ref="blockRef">
     <div class="container">
       <ul class="grid grid-2" aria-label="More media from the project">
         <li
@@ -33,12 +33,8 @@ const blockRef = ref(null);
 
 
 <style lang="scss">
-.block-thumbnails {
-  background: $black;
+.thumbnails {
 
-  .container {
-    max-width: 850px;
-  }
   img {
     width: 100%;
     object-fit: contain;
@@ -51,10 +47,6 @@ const blockRef = ref(null);
 
   .full {
     grid-column: 1 / -1;
-  }
-
-  @media (min-width: 768px) {
-    padding: 100px 0;
   }
 }
 </style>

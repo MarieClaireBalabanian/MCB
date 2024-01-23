@@ -63,8 +63,10 @@ onMounted(() => {
       margin: 0.2em 1em 0.2em 0;
       border-radius: 0.2em;
       color: $white;
-      background: $black;
-      padding: 0.5em 1.1em 0.5em;
+      // border: 2px solid rgba($black, .7);
+      background: rgba($black, .75);
+      padding: 0.4em 1.1em 0.4em;
+      @extend .paragraph-small;
     }
   }
 

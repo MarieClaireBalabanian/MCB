@@ -34,26 +34,26 @@
 <script setup>
 const attrs = useAttrs();
 const block = attrs.block;
-const blockRef = ref(null);
-const observer = ref(null);
+// const blockRef = ref(null);
+// const observer = ref(null);
 
-const initObserver = () => {
-  let obs = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("start-play");
-      } else {
-      }
-    });
-  });
+// const initObserver = () => {
+//   let obs = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//         entry.target.classList.add("start-play");
+//       } else {
+//       }
+//     });
+//   });
 
-  obs.observe(blockRef.value);
-  observer.value = obs;
-};
+//   obs.observe(blockRef.value);
+//   observer.value = obs;
+// };
 
-onMounted(() => {
-  if (process.client) initObserver();
-});
+// onMounted(() => {
+//   // if (process.client) initObserver();
+// });
 </script>
 
 
@@ -176,7 +176,7 @@ onMounted(() => {
       .h2-alt {
         opacity: 0;
         transform: translate3d(0, 40px, 0);
-        filter: blur(.9em);
+        filter: blur(20px);
       }
 
       .h1 {
@@ -188,19 +188,16 @@ onMounted(() => {
     }
     .slide-1 {
       opacity: 0;
-      filter: blur(.9em);
+      filter: blur(20px);
     }
 
     .slide-1 {
       transform: translateX(-100%);
-      animation: fadeIn2 1s forwards 5.3s;
+      animation: fadeIn2 1.4s forwards 5.5s;
     }
   }
 
   @keyframes fadeOut {
-    100% {
-      opacity: 0;
-    }
     100% {
       opacity: 0;
     }
