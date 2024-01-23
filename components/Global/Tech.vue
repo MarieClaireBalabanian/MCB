@@ -70,14 +70,18 @@ onMounted(() => {
 
   &.animate {
     li {
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transition: opacity 0.8s ease-out;
       opacity: 0;
     }
-    @for $i from 1 to 22 {
-      .li-#{$i} {
-        transition-delay: $i * 0.1s;
+
+    @media (min-width: 768px) {
+      @for $i from 1 to 22 {
+        .li-#{$i} {
+          transition-delay: $i * 0.1s;
+        }
       }
     }
+    
     &.showing {
       li {
         opacity: 1;

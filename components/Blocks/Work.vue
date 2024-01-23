@@ -139,7 +139,7 @@ onMounted(() => {
         .copy-inner {
           opacity: 0;
           transform: translate3d(-100%, 0, 0);
-          transition: 0.9s ease;
+          transition: 0.9s ease-out;
         }
       }
 
@@ -161,8 +161,8 @@ onMounted(() => {
           }
           .logo {
             transition: 0.4s ease;
-            // top: 30px;
-            transform: translate(-50%, -90px);
+            top: 30px;
+            transform: translate(-50%, 0);
           }
 
           .background-cover img {

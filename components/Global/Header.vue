@@ -1,5 +1,5 @@
 <template>
-  <header class="global-header" :class="{ open: open, 'bg': showBg }" id="header">
+  <header class="global-header" :class="{ open: open, bg: showBg }" id="header">
     <div class="container">
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav
@@ -58,9 +58,8 @@
               </svg>
             </button>
           </div>
-        
 
-        <div class="bg" :class="{ 'show': open, 'hide': !open }"></div>
+          <div class="bg" :class="{ show: open, hide: !open }"></div>
 
           <transition name="showItems">
             <div class="items-wrapper" v-show="open">
@@ -74,10 +73,10 @@
                   <ul class="items">
                     <li v-for="(item, index) in menu" :key="`nav-${index}`">
                       <a
-                       class="h2"
+                        class="h2-alt"
                         @click.prevent="scroll(item.slug)"
                         :href="`#${item.slug}`"
-                        ref="topLevel"
+                        ref="linkRef"
                       >
                         {{ item.title }}
                       </a>
@@ -96,13 +95,14 @@
 <script setup>
 import { scrollTo } from "@/composables/scrollTo.js";
 
+import { useWindowStore } from "@/stores/window";
 
-import { useWindowStore } from '@/stores/window';
-  
+const linkRef = ref([])
+
 const windowStore = useWindowStore();
-const showBg = computed(() =>  {
-    let scroll = windowStore.scrollTop;
-    return windowStore.scrollTop > 20;
+const showBg = computed(() => {
+  let scroll = windowStore.scrollTop;
+  return windowStore.scrollTop > 20;
 });
 
 const menu = [
@@ -122,7 +122,7 @@ const openNav = () => {
   open.value = true;
   nextTick(() => {
     document.body.classList.add("lock-scroll");
-    const focus = document.getElementById("inner-menu");
+    const focus = linkRef.value[0];
     focus.focus();
   });
 };
@@ -155,22 +155,17 @@ const hamburgerSR = computed(() => {
   left: 0;
   width: 100vw;
   z-index: 999;
-  transition: .5s ease;
+  transition: 0.5s ease;
   color: $white;
-   transform: translateY(-100px);
-    opacity: 1;
-animation: header-show 1s forwards 1s;
-
   &.bg {
     background: white;
     color: $black;
-     .button-wrapper {
+    .button-wrapper {
       .bar {
-        
         stroke: $black;
       }
       .logo {
-          transition: .2s ease !important;
+        transition: 0.2s ease !important;
       }
     }
   }
@@ -186,10 +181,11 @@ animation: header-show 1s forwards 1s;
     position: relative;
     z-index: 999;
 
-    &:hover, &:focus {
-        border-color: $turquoise;
-        color: $turquoise;
-        letter-spacing: .1em;
+    &:hover,
+    &:focus {
+      border-color: $turquoise;
+      color: $turquoise;
+      letter-spacing: 0.1em;
     }
   }
 
@@ -213,7 +209,7 @@ animation: header-show 1s forwards 1s;
 
     .bar {
       transition: 0.25s ease 0.2s;
-        stroke: $white;
+      stroke: $white;
     }
   }
 
@@ -224,20 +220,17 @@ animation: header-show 1s forwards 1s;
     width: 100vw;
     height: 100vh;
     background: black;
-    
 
     &.hide {
       transform: scaleX(0);
       opacity: 0;
-    transition: transform 0.4s ease-out 0.25s, opacity 0.45s ease-out 0.45s;
-
+      transition: transform 0.4s ease-out 0.25s, opacity 0.45s ease-out 0.45s;
     }
 
     &.show {
-        opacity: 1;
+      opacity: 1;
       transform: scaleX(1);
-        transition: transform 0.4s ease-in, opacity 0.45s ease;
-
+      transition: transform 0.4s ease-in, opacity 0.45s ease;
     }
   }
 
@@ -266,7 +259,7 @@ animation: header-show 1s forwards 1s;
     justify-content: center;
 
     ul {
-      padding: 60px 0 60px 4.5vw;
+      padding: 90px 0 90px 4.5vw;
     }
 
     li {
@@ -279,11 +272,12 @@ animation: header-show 1s forwards 1s;
 
       a {
         border-bottom: 2px solid transparent;
-        transition:  .2s ease;
+        transition: 0.2s ease;
         text-transform: uppercase;
-        letter-spacing: .3em;
-        &:hover, &:focus {
-            border-color: $white;
+        letter-spacing: 0.3em;
+        &:hover,
+        &:focus {
+          border-color: $white;
         }
       }
     }

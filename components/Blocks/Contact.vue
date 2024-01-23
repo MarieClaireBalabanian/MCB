@@ -2,84 +2,89 @@
   <section class="block-padding bottom-line">
     <div class="container">
       <div class="half copy text-white mb-20">
-            <h2 class="h2 mb-40">{{ block.title }}</h2>
-            <div class="paragraph">
-              <SanityContent :blocks="block.contact_copy" />
-            </div>
+        <h2 class="h2 mb-40">{{ block.title }}</h2>
+        <div class="paragraph">
+          <SanityContent :blocks="block.contact_copy" />
+        </div>
       </div>
 
       <div class="half form">
-         <form @submit.prevent="submit" aria-label="Send us a mesage">
-        <Transition name="list">
-          <div
-            class="form-errors mb-40"
-            v-if="srOnlyErrors.length"
-            aria-role="status"
-          >
-            <ol
-              ref="formErrorsRef"
-              class="text-red paragraph-small"
-              tabindex="-1"
-              aria-label="Form Errors"
+        <form @submit.prevent="submit" aria-label="Send us a mesage">
+          <Transition name="list">
+            <div
+              class="form-errors mb-40"
+              v-if="srOnlyErrors.length"
+              aria-role="status"
             >
-              <li
-                class="text-left"
-                v-for="(error, index) in srOnlyErrors"
-                :key="`error-${index}`"
+              <ol
+                ref="formErrorsRef"
+                class="text-red paragraph-small"
+                tabindex="-1"
+                aria-label="Form Errors"
               >
-                {{ index + 1 }}. {{ error }}
-              </li>
-            </ol>
+                <li
+                  class="text-left"
+                  v-for="(error, index) in srOnlyErrors"
+                  :key="`error-${index}`"
+                >
+                  {{ index + 1 }}. {{ error }}
+                </li>
+              </ol>
+            </div>
+          </Transition>
+
+          <div class="fields mb-40 m-auto">
+            <GlobalInput
+              v-model="formInputs.name.val"
+              :label="formInputs.name.label"
+              labelStyle="absolute"
+              :error="formInputs.name.errors"
+              name="name"
+              autocomplete="name"
+              required
+            />
+            <GlobalInput
+              v-model="formInputs.email.val"
+              :label="formInputs.email.label"
+              labelStyle="absolute"
+              :error="formInputs.email.errors"
+              name="email"
+              autocomplete="email"
+              required
+            />
+
+            <GlobalInput
+              v-model="formInputs.message.val"
+              :label="formInputs.message.label"
+              labelStyle="absolute"
+              :error="formInputs.message.errors"
+              name="message"
+              inputType="textarea"
+              required
+            />
           </div>
-        </Transition>
 
-        <div class="fields mb-40 m-auto">
-          <GlobalInput
-            v-model="formInputs.name.val"
-            :label="formInputs.name.label"
-            labelStyle="absolute"
-            :error="formInputs.name.errors"
-            name="name"
-            autocomplete="name"
-            required
-          />
-          <GlobalInput
-            v-model="formInputs.email.val"
-            :label="formInputs.email.label"
-            labelStyle="absolute"
-            :error="formInputs.email.errors"
-            name="email"
-            autocomplete="email"
-            required
-          />
-
-          <GlobalInput
-            v-model="formInputs.message.val"
-            :label="formInputs.message.label"
-            labelStyle="absolute"
-            :error="formInputs.message.errors"
-            name="message"
-            inputType="textarea"
-            required
-          />
-        </div>
-
-        <div class="actions text-center">
-          <button
-            type="submit"
-            :disabled="submitting"
-            ref="submitButton"
-            class="button"
+          <div class="actions text-center">
+            <button
+              type="submit"
+              :disabled="submitting"
+              ref="submitButton"
+              class="button"
+            >
+              {{ submitting ? "Submitting" : "Submit" }}
+            </button>
+          </div>
+          <p
+            v-if="success"
+            role="status"
+            class="success-message text-center text-white h3"
+            tabindex="-1"
+            ref="successMessageRef"
           >
-            {{ submitting ? 'Submitting' : 'Submit'}}
-          </button>
-        </div>
-        <p v-if="success" role="status" class="success-message text-center text-white h3" tabindex="-1" ref="successMessageRef">
-          Thanks for reaching out!
-        </p>
-      </form>
+            Thanks for reaching out!
+          </p>
+        </form>
       </div>
-     
     </div>
   </section>
 </template>
@@ -87,7 +92,6 @@
 <script setup>
 import validators from "~/composables/validators";
 import { scrollTo } from "../../composables/scrollTo.js";
-
 
 const attrs = useAttrs();
 const block = attrs.block;
@@ -159,8 +163,7 @@ const submit = () => {
     submitting.value = false;
     nextTick(() => {
       successMessageRef.value.focus();
-
-    })
+    });
   } else {
     success.value = false;
     submitting.value = false;
@@ -200,16 +203,15 @@ async function send() {
     grid-gap: 15px;
   }
 
-
   .form-errors {
     text-align: center;
-   
+
     ol {
       display: inline-block;
       width: auto;
-       background: $red;
-       padding: 10px 30px;
-       color: $white;
+      background: $red;
+      padding: 10px 30px;
+      color: $white;
     }
   }
 
@@ -217,21 +219,19 @@ async function send() {
     margin-top: 30px;
   }
 
-                  // background: linear-gradient(160deg,$green 50%, $black 0);
+  .copy {
+    padding-top: 2rem;
+    .paragraph {
+      width: 90%;
+    }
+  }
 
   @media (min-width: 768px) {
-
     .container {
       display: flex;
       justify-content: space-between;
       .half {
         width: calc(50% - 40px);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &.copy {
-
-        }
       }
     }
     .fields {

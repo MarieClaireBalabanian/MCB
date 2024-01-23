@@ -11,11 +11,22 @@
 
     <div class="container">
       <div class="slides">
-      <div class="slide" v-for="(slide, index) in block.slides" :key="`hero-${index}`" :class="`slide-${index}`">
-          <h1 class="h1 heading mb-40">{{ slide.title }}</h1>
-          <h2 class="h2-alt heading">{{ slide.subtitle }}</h2>
+        <div
+          class="slide"
+          v-for="(slide, index) in block.slides"
+          :key="`hero-${index}`"
+          :class="`slide-${index}`"
+        >
+          <template v-if="index === 0">
+            <p class="h1 heading mb-40" v-html="slide.title"></p>
+            <p class="h2-alt heading" v-html="slide.subtitle"></p>
+          </template>
+          <template v-else>
+            <h1 class="h1 heading mb-40" v-html="slide.title"></h1>
+            <h2 class="h2-alt heading" v-html="slide.subtitle"></h2>
+          </template>
+        </div>
       </div>
-    </div>
     </div>
   </section>
 </template>
@@ -26,11 +37,9 @@ const block = attrs.block;
 const blockRef = ref(null);
 const observer = ref(null);
 
-
 const initObserver = () => {
   let obs = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-
       if (entry.isIntersecting) {
         entry.target.classList.add("start-play");
       } else {
@@ -38,7 +47,7 @@ const initObserver = () => {
     });
   });
 
-    obs.observe(blockRef.value);
+  obs.observe(blockRef.value);
   observer.value = obs;
 };
 
@@ -88,15 +97,12 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     z-index: 5;
-    justify-content:center; 
+    justify-content: center;
     align-items: flex-end;
 
-
     @media (max-width: 767px) {
-          justify-content:flex-end; 
-
-          padding-bottom: 10vh;
-
+      justify-content: flex-end;
+      padding-bottom: 20vh;
     }
   }
 
@@ -133,7 +139,6 @@ onMounted(() => {
     }
     img {
       filter: contrast(0.95) brightness(70%);
-
       object-position: 75% center !important;
     }
   }
@@ -146,66 +151,75 @@ onMounted(() => {
   }
 
   .h1 {
-    display: inline-block;
-    max-width: 42rem;
     margin-right: -0.15em;
   }
 
   .h2-alt {
     margin-top: 7vh;
+    line-height: 1.2em;
     @media (max-width: 767px) {
-          margin-top: 3vh;
-
+      margin-top: 4vh;
     }
   }
 
   .slides {
     display: flex;
+    width: 100%;
     .slide {
       width: 100%;
       flex-shrink: 0;
       text-align: right;
-    
     }
     .slide-0 {
-      animation: fadeOut .6s forwards 4.5s;
-      h1, h2 {
-      opacity: 0;
-    }
-    
-      h1 { animation: fadeIn 1s forwards 1s; }
-      h2 { animation: fadeIn 1s forwards  2.5s; }
+      animation: fadeOut 0.8s forwards 4.5s;
+      .h1,
+      .h2-alt {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+        filter: blur(.9em);
+      }
 
+      .h1 {
+        animation: fadeIn 1s forwards 1s;
+      }
+      .h2-alt {
+        animation: fadeIn 1s forwards 2.5s;
+      }
     }
     .slide-1 {
       opacity: 0;
+      filter: blur(.9em);
     }
 
     .slide-1 {
-        transform: translateX(-100%);
-        animation: fadeIn 1s forwards 5.1s;
+      transform: translateX(-100%);
+      animation: fadeIn2 1s forwards 5.3s;
     }
   }
-
 
   @keyframes fadeOut {
     100% {
       opacity: 0;
     }
-  }
-
-  @keyframes trans {
     100% {
-     transform: translatefY
+      opacity: 0;
     }
   }
 
   @keyframes fadeIn {
-    0% {
-      opacity: 0;
+    80% {
+      transform: translate3d(0, 0, 0);
     }
     100% {
       opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+    }
+  }
+  @keyframes fadeIn2 {
+    100% {
+      opacity: 1;
+      filter: blur(0);
     }
   }
 }

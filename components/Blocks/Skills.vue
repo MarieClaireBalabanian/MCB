@@ -20,8 +20,6 @@ const block = attrs.block;
   .tech {
     columns: 2;
     column-gap: 1vw;
-    // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr;
   }
 
   @media (min-width: 768px) {

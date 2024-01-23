@@ -92,7 +92,7 @@ transform: translate3d(0,0,0); // for safari support
     mix-blend-mode: screen;
     img {
       filter: grayscale(100%);
-      object-position: left top !important;
+      object-position: 40% top !important;
 
     }
   }
