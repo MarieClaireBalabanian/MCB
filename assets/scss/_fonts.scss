@@ -1,0 +1,18 @@
+$fontBase: '@/assets/fonts';
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+ // Major Mono
+
+@font-face {
+  font-family: 'Major Mono Display';
+  src: url(#{$fontBase}/major-mono-display-v16-latin-regular.woff2) format('woff2'); 
+  font-display: swap; 
+  font-style: normal;
+  font-weight: 400;
+  
+}
+
+$sans: 'Helvetica', 'sans-serif';
+
+$major-mono:  'Major Mono Display', $sans;
+$body: 'Outfit', $sans;

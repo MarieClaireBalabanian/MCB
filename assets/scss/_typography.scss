@@ -1,0 +1,146 @@
+body {
+  font-family: $body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+}
+
+
+
+
+
+.h1 {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 0.73em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.text-gradient {
+  background: linear-gradient(217deg,
+      rgba($turquoise, 1),
+      rgba(255, 0, 0, 0) 100.71%),
+    linear-gradient(127deg, rgba($rose, 1), rgba(0, 255, 0, 0) 90.71%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.h2 {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $white;
+  @media (min-width: 768px) {
+    font-size: 5.5em;
+  }
+}
+
+.h2-alt {
+  line-height: 0.73em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 2.1rem;
+
+  @media (max-width: 767px) {
+    font-size: 1.5rem;
+  }
+}
+
+.h2-large {
+  font-size: 1.8rem;
+
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+.h3 {
+  font-size: 1.4rem;
+  @media (min-width: 1024px) {
+    font-size: 1.6rem;
+  }
+}
+
+.h4 {
+
+  font-size: 1.4rem;
+
+  @media (min-width: 1024px) {
+    font-size: 1.6rem;
+  }
+}
+
+.h5 {
+  font-size: 1.2rem;
+
+  @media (min-width: 1024px) {
+    font-size: 1.2rem;
+  }
+}
+
+
+.paragraph {
+  font-size: 1.1rem;
+  line-height: 1.6em;
+  ;
+
+  *+p {
+    margin-top: 1.5rem;
+  }
+
+  h3 {
+    @extend .h3;
+    @extend .mb-20;
+    font-weight: 500;
+  }
+
+  ul {
+    margin-top: 1.5rem;
+    list-style-type: disc;
+    padding-left: 40px;
+
+    li {
+
+      // line-height: 1.em;
+      +li {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+}
+
+.paragraph-small {
+  font-size: .9rem;
+  line-height: 1.6em;
+}
+
+.text-blue {
+  color: $blue;
+}
+
+.text-turquoise {
+  color: $turquoise;
+}
+
+.text-white {
+  color: $white;
+}
+
+.text-black {
+  color: $black;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.section-header {
+  letter-spacing: 0;
+  line-height: .7em;
+}
