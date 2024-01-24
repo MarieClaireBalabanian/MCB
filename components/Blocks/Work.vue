@@ -68,7 +68,6 @@ const hovering = ref(null);
 const showing = ref([]);
 
 const initObserver = () => {
-  const options = { threshold: 0.1 };
   let observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -76,7 +75,7 @@ const initObserver = () => {
         showing.value.push(val);
       }
     });
-  }, options);
+  });
   const els = tileRef.value;
   els.forEach((el) => {
     observer.observe(el);
@@ -147,6 +146,7 @@ onMounted(() => {
           .background-cover img {
             transform: scale(1);
             opacity: 1;
+            transition-delay: 0;
           }
           .logo {
             transform: translate(-50%, -50%) scale(1);

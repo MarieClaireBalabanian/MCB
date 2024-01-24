@@ -39,8 +39,6 @@ const initObserver = () => {
   const options = { threshold: 1 };
   let obs = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const current = parseInt(entry.target.getAttribute("data-id"), 10);
-
       if (entry.isIntersecting) {
         entry.target.classList.add("showing");
       } else {
@@ -55,7 +53,7 @@ const initObserver = () => {
 };
 
 onMounted(() => {
-  // if (process.client) initObserver();
+  if (process.client) initObserver();
 });
 </script>
 
@@ -64,8 +62,10 @@ onMounted(() => {
 .block-about {
   position: relative;
   background: rgba($white, 0.9);
-transform: translate3d(0,0,0); // for safari support
-;  .copy {
+  transform: translate3d(0, 0, 0); // for safari support mix blend mode
+
+  .copy {
+    transition: transform .6s ease-out,  opacity .6s ease-in;
     &:nth-child(even) {
       margin-left: auto;
       margin-top: 40px;
@@ -75,8 +75,18 @@ transform: translate3d(0,0,0); // for safari support
       max-width: 50rem;
 
       &:nth-child(even) {
-        margin-top: 0px;
+        margin-top: 60px;
       }
+    }
+
+    &:not(.showing) {
+      opacity: 0;
+      transform: translateY(40px);
+
+    }
+    &.showing {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -93,7 +103,6 @@ transform: translate3d(0,0,0); // for safari support
     img {
       filter: grayscale(100%);
       object-position: 40% top !important;
-
     }
   }
 }

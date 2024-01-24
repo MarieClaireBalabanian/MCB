@@ -14,17 +14,6 @@
           >Visit the Site</a
         >
       </div>
-
-      <div class="video-container mb-80" v-if="project.video">
-        <SanityFile :asset-id="project.video.asset._ref">
-          <template #default="{ src }">
-            <video playsinline muted loop controls>
-              <source :src="src" type="video/mp4" />
-            </video>
-          </template>
-        </SanityFile>
-        <p class="paragraph-small">Short snippet of the presentation</p>
-      </div>
     </div>
   </div>
 </template>

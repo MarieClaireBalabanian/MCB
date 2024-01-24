@@ -91,6 +91,9 @@ const props = defineProps({
     type: Object,
   },
 });
+const { project } = toRefs(props)
+
+console.log(project)
 
 const activeTab = ref(0);
 const tabRef = ref(null);
@@ -114,17 +117,12 @@ const arrowFocus = (direction) => {
   tabs.forEach((item, index) => {
     if (index === currentIndex) {
       if (direction === "right") {
-        if (index >= 0 && index < tabs.length - 1) {
-          nextFocus = index + 1;
-        } else {
-          nextFocus = 0;
-        }
-      } else if (direction === "left") {
-        if (index > 0) {
-          nextFocus = index - 1;
-        } else {
-          nextFocus = tabs.length - 1;
-        }
+        if (index >= 0 && index < tabs.length - 1)  nextFocus = index + 1;
+        else  nextFocus = 0;
+      } 
+      else if (direction === "left") {
+        if (index > 0) nextFocus = index - 1;
+        else nextFocus = tabs.length - 1;
       }
     }
   });

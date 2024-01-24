@@ -1,6 +1,17 @@
 <template>
   <section class="thumbnails" ref="blockRef">
     <div class="container">
+      <div class="video-container mb-20" v-if="project.video">
+        <SanityFile :asset-id="project.video.asset._ref">
+          <template #default="{ src }">
+            <video playsinline muted loop controls>
+              <source :src="src" type="video/mp4" />
+            </video>
+          </template>
+        </SanityFile>
+        <p class="paragraph-small">Short snippet of the presentation</p>
+      </div>
+
       <ul class="grid grid-2" aria-label="More media from the project">
         <li
           class="mb-20"
@@ -47,6 +58,9 @@ const blockRef = ref(null);
 
   .full {
     grid-column: 1 / -1;
+  }
+  video {
+    width: 100%;
   }
 }
 </style>
