@@ -74,11 +74,11 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    postmark: process.env.POSTMARK,
+
     public: {
       sanity_media: process.env.SANITY_MEDIA,
       imagekit: process.env.IMAGEKIT,
- 
+      postmark: process.env.POSTMARK,
       email: process.env.EMAIL,
     },
   },

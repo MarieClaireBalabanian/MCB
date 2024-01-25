@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
     const runtimeConfig = useRuntimeConfig();
-    const API_TOKEN = runtimeConfig.postmark;
+    const API_TOKEN = runtimeConfig.public.postmark;
 
     const headers = {
       Accept: 'application/json',
