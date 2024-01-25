@@ -92,8 +92,6 @@ const props = defineProps({
 });
 const { project } = toRefs(props)
 
-console.log(project)
-
 const activeTab = ref(0);
 const tabRef = ref(null);
 const items = [

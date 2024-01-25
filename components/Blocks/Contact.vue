@@ -119,12 +119,6 @@ const formInputs = ref({
     validators: [validators.required],
     label: "Message",
   },
-  zip: {
-    val: "",
-    errors: null,
-    validators: [],
-    label: "Zip Code",
-  },
 });
 
 const submitting = ref(false);
@@ -163,6 +157,9 @@ const submit = () => {
     submitting.value = false;
     nextTick(() => {
       successMessageRef.value.focus();
+      requiredFields.forEach((fieldName) => {
+        formInputs.value[fieldName].val = '';
+      });
     });
   } else {
     success.value = false;
@@ -173,11 +170,13 @@ const submit = () => {
   }
 };
 
+
+ 
 const runtimeConfig = useRuntimeConfig();
 async function send() {
   const data = {
-    From: runtimeConfig.email,
-    To: runtimeConfig.email,
+    From: runtimeConfig.public.email,
+    To: runtimeConfig.public.email,
     HtmlBody: `
         <h2>${formInputs.value.name.val}</h2>
         <h3>${formInputs.value.email.val}</h3>
