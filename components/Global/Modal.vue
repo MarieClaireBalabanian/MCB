@@ -34,7 +34,6 @@
 
                 <div class="container">
                   <PartialsHero :project="project" />
-                </div>
                 <section
                   class="tab-section"
                   :class="{ 'bg-black': activeTab === 0 }"
@@ -59,7 +58,6 @@
                       <span> {{ item.title }}</span>
                     </button>
                   </div>
-                  <div class="container">
                     <div
                       v-for="(panel, index) in items"
                       v-show="index === activeTab"
@@ -74,8 +72,9 @@
                         </component>
                       </div>
                     </div>
-                  </div>
+              
                 </section>
+                    </div>
               </div>
             </div>
           </GlobalFocusTrap>
@@ -243,9 +242,7 @@ const handleModal = (val) => {
     transform: translate3d(0, 0, 0);
   }
 
-  .container {
-    max-width: 65rem;
-  }
+ 
 
   .tablist {
     display: flex;
@@ -273,9 +270,9 @@ const handleModal = (val) => {
   }
 
   .tab-section {
-    &.bg-black {
-      background: $black;
-    }
+    // &.bg-black {
+    //   background: $black;
+    // }
   }
   .panel-wrapper {
     padding: 50px 0 100px;

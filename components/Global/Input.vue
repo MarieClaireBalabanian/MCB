@@ -139,6 +139,8 @@ onMounted(() => {
   }
 
   label {
+	    background: white;
+
     &.static {
       display: block;
       margin-bottom: 10px;

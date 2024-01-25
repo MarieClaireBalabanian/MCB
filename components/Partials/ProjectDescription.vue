@@ -23,3 +23,11 @@ const props = defineProps({
   project: Object,
 });
 </script>
+
+
+<style lang="scss">
+
+ .body{
+    max-width: 65rem;
+  }
+</style>

@@ -16,31 +16,19 @@ button {
     letter-spacing: .05em;
     background: $white;
     color: $black;
-    transition: clip-path .25s ease;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
-
+    transition:  .25s ease;
+    background-color: $rose;
+    color: $white;
     &:hover,
     &:focus {
         text-decoration: underline;
-
-        $cut: 10px;
-        $diff: calc(100% - $cut);
-        clip-path: polygon($cut 0, 100% 0, 100% $diff, $diff 100%, 0 100%, 0 $cut);
-        -webkit-clip-path: polygon($cut 0, 100% 0, 100% $diff, $diff 100%, 0 100%, 0 $cut);
+        border-radius: .5em;
     }
 
     &.button-black {
         color: $white;
         background: $black;
         transform-origin: left center;
-    }
-}
-
-.text-link {
-    display: inline-block;
-
-    &:hover {
-        text-decoration: underline;
     }
 }
 
@@ -55,10 +43,10 @@ button {
         border: none;
         color: $white;
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: 1rem;
         letter-spacing: 1px;
         background: $red;
         font-weight: 700;
-        padding: 8px;
+        padding: .7rem .5rem;
     }
 }

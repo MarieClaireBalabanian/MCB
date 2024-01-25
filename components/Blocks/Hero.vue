@@ -151,7 +151,7 @@ const block = attrs.block;
   }
 
   .h1 {
-    margin-right: -0.15em;
+    margin-right: -0.1em;
   }
 
   .h2-alt {

@@ -4,7 +4,7 @@
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav
           class="items-container"
-          @keyup.esc="closeNav"
+          @keyup.esc="closeNav('esc')"
           aria-label="Main Navigation"
         >
           <a
@@ -20,7 +20,7 @@
               id="menu-toggle"
               aria-haspopup="true"
               class="hamburger"
-              ref="hamburger"
+              ref="hamburgerRef"
               @click="toggleNav"
               :aria-expanded="open.toString()"
             >
@@ -98,6 +98,7 @@ import { scrollTo } from "@/composables/scrollTo.js";
 import { useWindowStore } from "@/stores/window";
 
 const linkRef = ref([])
+const hamburgerRef = ref(null)
 
 const windowStore = useWindowStore();
 const showBg = computed(() => {
@@ -127,9 +128,14 @@ const openNav = () => {
   });
 };
 
-const closeNav = () => {
+const closeNav = (action) => {
   open.value = false;
   document.body.classList.remove("lock-scroll");
+  if (action === 'esc') {
+    nextTick(() => {
+        hamburgerRef.value.focus();
+    })
+  }
 };
 
 const scroll = (id) => {
@@ -160,14 +166,20 @@ const hamburgerSR = computed(() => {
   &.bg {
     background: white;
     color: $black;
+    box-shadow:0 1px 5px rgba($black, .5);
     .button-wrapper {
       .bar {
         stroke: $black;
       }
-      .logo {
-        transition: 0.2s ease !important;
-      }
     }
+    .logo {
+        transition: 0.2s ease !important;
+        &:hover,
+        &:focus {
+            color: $green;
+            border-color: $green;
+        }
+      }
   }
 
   > .container {
@@ -180,12 +192,11 @@ const hamburgerSR = computed(() => {
     transition: 0.25s ease;
     position: relative;
     z-index: 999;
+    border-bottom: 1px solid transparent;
 
     &:hover,
     &:focus {
-      border-color: $turquoise;
-      color: $turquoise;
-      letter-spacing: 0.1em;
+      border-color: $white;
     }
   }
 
@@ -238,10 +249,9 @@ const hamburgerSR = computed(() => {
     width: 100%;
     -webkit-overflow-scrolling: touch;
     z-index: 9999;
-    overflow: hidden;
     display: flex;
     justify-content: space-between;
-    padding-top: 15px;
+    padding-top: 7px;
   }
 
   .items-wrapper {
@@ -284,8 +294,13 @@ const hamburgerSR = computed(() => {
   }
 
   &.open {
-    .logo {
+    .logo, &.bg .logo {
       color: $white;
+      &:hover,
+        &:focus {
+            color: $white;
+            border-color: $white;
+        }
     }
 
     .items-container {

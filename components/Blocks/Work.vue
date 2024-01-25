@@ -125,7 +125,7 @@ onMounted(() => {
           opacity: 0;
           width: 90%;
           height: 50px;
-          transition: 0.8s ease 1.2s;
+          transition: 0.8s ease 1s;
           filter: grayscale(100%) brightness(0) invert(1)
             drop-shadow(0 0 0.7rem $black);
         }
@@ -137,8 +137,8 @@ onMounted(() => {
 
         .copy-inner {
           opacity: 0;
-          transform: translate3d(-100%, 0, 0);
-          transition: 0.9s ease-out;
+          transform: scale(.9);
+          transition: transform 1s ease, opacity 1s ease;
         }
       }
 
@@ -157,7 +157,7 @@ onMounted(() => {
         &:focus-within {
           .copy-inner {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform:scale(1);
           }
           .logo {
             transition: 0.4s ease;
@@ -167,7 +167,7 @@ onMounted(() => {
 
           .background-cover img {
             opacity: 0;
-            transform: translate3d(100%, 0, 0) !important;
+            // transform: translate3d(100%, 0, 0) !important;
             transition: 0.5s ease;
           }
         }

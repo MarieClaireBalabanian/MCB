@@ -1,6 +1,5 @@
 <template>
   <section class="thumbnails" ref="blockRef">
-    <div class="container">
       <div class="video-container mb-20" v-if="project.video">
         <SanityFile :asset-id="project.video.asset._ref">
           <template #default="{ src }">
@@ -22,10 +21,10 @@
           <GlobalImage
             :gImage="image"
             size="desktop-large"
+            isEager
           />
         </li>
       </ul>
-    </div>
       
   </section>
 </template>
@@ -50,10 +49,13 @@ const blockRef = ref(null);
     width: 100%;
     object-fit: contain;
     object-position: center;
+
   }
 
   .global-image {
-    box-shadow: 0 0 2px 2px rgba($white, 0.1);
+            box-shadow: 0 0 2px 2px rgba($black, 0.2);
+
+overflow: visible;
   }
 
   .full {

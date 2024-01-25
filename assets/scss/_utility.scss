@@ -1,4 +1,4 @@
-$header-height: 60px;
+$header-height: 45px;
 
 .grid {
     display: grid;
@@ -145,9 +145,9 @@ input,
 textarea,
 select {
     &:focus {
-        outline-color: #5395ff;
-        outline-offset: 0;
-        outline-style: auto;
+        outline-color: #58aeff;
+        outline-offset: 2px;
+        outline-style: solid;
         outline-width: 2px;
     }
 }
