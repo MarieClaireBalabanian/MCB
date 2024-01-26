@@ -175,8 +175,8 @@ const submit = () => {
 const runtimeConfig = useRuntimeConfig();
 async function send() {
   const data = {
-    From: runtimeConfig.public.email,
-    To: runtimeConfig.public.email,
+    From: "hello@mcbalabanian.io",
+    To: "hello@mcbalabanian.io",
     HtmlBody: `
         <h2>${formInputs.value.name.val}</h2>
         <h3>${formInputs.value.email.val}</h3>
