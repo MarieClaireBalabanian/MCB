@@ -1,31 +1,19 @@
 <template>
   <section class="thumbnails" ref="blockRef">
-      <div class="video-container mb-20" v-if="project.video">
-        <SanityFile :asset-id="project.video.asset._ref">
-          <template #default="{ src }">
-            <video playsinline muted loop controls>
-              <source :src="src" type="video/mp4" />
-            </video>
-          </template>
-        </SanityFile>
-        <p class="paragraph-small">Short snippet of the presentation</p>
-      </div>
+    <div class="video-container mb-40" v-if="project.video">
+      <div class="iframe" v-html="project.video"></div>
+    </div>
 
-      <ul class="grid grid-2" aria-label="More media from the project">
-        <li
-          class="mb-20"
-          v-for="(image, index) in project.gallery.images"
-          :key="`modal-${index}`"
-          :class="{ full: !image.portrait }"
-        >
-          <GlobalImage
-            :gImage="image"
-            size="desktop-large"
-            isEager
-          />
-        </li>
-      </ul>
-      
+    <ul class="grid grid-2" aria-label="More media from the project">
+      <li
+        class="mb-20"
+        v-for="(image, index) in project.gallery.images"
+        :key="`modal-${index}`"
+        :class="{ full: !image.portrait }"
+      >
+        <GlobalImage :gImage="image" size="desktop-large" isEager />
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -36,33 +24,43 @@ const props = defineProps({
   },
 });
 
-const { project } = toRefs(props)
-const blockRef = ref(null);
 
+const { project } = toRefs(props);
+const blockRef = ref(null);
 </script>
 
 
 <style lang="scss">
 .thumbnails {
-
   img {
     width: 100%;
     object-fit: contain;
     object-position: center;
-
   }
 
   .global-image {
-            box-shadow: 0 0 2px 2px rgba($black, 0.2);
-
-overflow: visible;
+    box-shadow: 0 0 2px 2px rgba($black, 0.2);
+    overflow: visible;
   }
 
   .full {
     grid-column: 1 / -1;
   }
-  video {
+  
+  .video-container {
+    position: relative;
+    height: 0;
+    overflow: hidden;
     width: 100%;
+    padding-top: 30.08%;
+    iframe {
+      position: absolute;
+      inset: 0 0 0 0;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+
   }
 }
 </style>

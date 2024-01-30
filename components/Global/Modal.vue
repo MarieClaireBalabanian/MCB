@@ -34,30 +34,30 @@
 
                 <div class="container">
                   <PartialsHero :project="project" />
-                <section
-                  class="tab-section"
-                  :class="{ 'bg-black': activeTab === 0 }"
-                >
-                  <div class="tablist" role="tablist" ref="tabRef">
-                    <button
-                      v-for="(item, index) in items"
-                      role="tab"
-                      class="project-tab tab paragraph bold text-center text-white"
-                      :id="'project-tab-' + index"
-                      :class="{ active: index === activeTab }"
-                      :aria-selected="
-                        index === activeTab ? true : false.toString()
-                      "
-                      :key="`buttontab${index}`"
-                      :aria-controls="'grid-panel-' + index"
-                      :tabindex="index === activeTab ? 0 : -1"
-                      @keyup.right="arrowFocus('right')"
-                      @keyup.left="arrowFocus('left')"
-                      @click="activeTab = index"
-                    >
-                      <span> {{ item.title }}</span>
-                    </button>
-                  </div>
+                  <section
+                    class="tab-section"
+                    :class="{ 'bg-black': activeTab === 0 }"
+                  >
+                    <div class="tablist" role="tablist" ref="tabRef">
+                      <button
+                        v-for="(item, index) in items"
+                        role="tab"
+                        class="project-tab tab paragraph bold text-center text-white"
+                        :id="'project-tab-' + index"
+                        :class="{ active: index === activeTab }"
+                        :aria-selected="
+                          index === activeTab ? true : false.toString()
+                        "
+                        :key="`buttontab${index}`"
+                        :aria-controls="'grid-panel-' + index"
+                        :tabindex="index === activeTab ? 0 : -1"
+                        @keyup.right="arrowFocus('right')"
+                        @keyup.left="arrowFocus('left')"
+                        @click="activeTab = index"
+                      >
+                        <span> {{ item.title }}</span>
+                      </button>
+                    </div>
                     <div
                       v-for="(panel, index) in items"
                       v-show="index === activeTab"
@@ -72,9 +72,8 @@
                         </component>
                       </div>
                     </div>
-              
-                </section>
-                    </div>
+                  </section>
+                </div>
               </div>
             </div>
           </GlobalFocusTrap>
@@ -90,7 +89,7 @@ const props = defineProps({
     type: Object,
   },
 });
-const { project } = toRefs(props)
+const { project } = toRefs(props);
 
 const activeTab = ref(0);
 const tabRef = ref(null);
@@ -114,10 +113,9 @@ const arrowFocus = (direction) => {
   tabs.forEach((item, index) => {
     if (index === currentIndex) {
       if (direction === "right") {
-        if (index >= 0 && index < tabs.length - 1)  nextFocus = index + 1;
-        else  nextFocus = 0;
-      } 
-      else if (direction === "left") {
+        if (index >= 0 && index < tabs.length - 1) nextFocus = index + 1;
+        else nextFocus = 0;
+      } else if (direction === "left") {
         if (index > 0) nextFocus = index - 1;
         else nextFocus = tabs.length - 1;
       }
@@ -240,15 +238,14 @@ const handleModal = (val) => {
     transform: translate3d(0, 0, 0);
   }
 
- 
-
   .tablist {
     display: flex;
     > button {
-      color: $white;
       width: 50%;
-      background: $green;
-      padding: 0.7em 1em;
+      padding: 0.5em .8em;
+      background: $white;
+      border: 2px solid $green;
+      color: $black;
 
       span {
         display: inline-block;
@@ -256,9 +253,8 @@ const handleModal = (val) => {
         transform: scale(0.9);
       }
       &.active {
-        background: $white;
-        border: 2px solid $green;
-        color: $black;
+        color: $white;
+        background: $green;
         span {
           transform: scale(1);
           text-decoration: underline;
