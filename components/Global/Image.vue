@@ -38,8 +38,8 @@ const sizesSet = computed(() => {
 const cleanUrl = (url) => {
   const b = runtimeConfig.public.sanity_media;
   let clean = url.replace(b, "");
-  if (url.endsWith('svg')) clean = `${runtimeConfig.public.imagekit}${clean}`
-  return clean
+  if (url.endsWith("svg")) clean = `${runtimeConfig.public.imagekit}${clean}`;
+  return clean;
 };
 </script>
 
@@ -86,13 +86,13 @@ const cleanUrl = (url) => {
   }
 
   &.contain {
-    picture, img {
-        height: 100%;
+    picture,
+    img {
+      height: 100%;
     }
     img {
-           object-fit: contain;
-           object-position: center;
-        
+      object-fit: contain;
+      object-position: center;
     }
   }
 }

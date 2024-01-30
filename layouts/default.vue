@@ -10,7 +10,6 @@
 </template> 
 
 <script setup>
-// import { SpeedInsights } from "@vercel/speed-insights/next";
 import { useWindowStore } from "@/stores/window";
 
 const windowStore = useWindowStore();

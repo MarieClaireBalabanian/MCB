@@ -242,7 +242,7 @@ const handleModal = (val) => {
     display: flex;
     > button {
       width: 50%;
-      padding: 0.5em .8em;
+      padding: 0.5em 0.8em;
       background: $white;
       border: 2px solid $green;
       color: $black;

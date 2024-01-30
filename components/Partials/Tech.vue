@@ -38,7 +38,6 @@ const initObserver = () => {
   });
 
   obs.observe(listRef.value);
-
   observer.value = obs;
 };
 
@@ -63,8 +62,7 @@ onMounted(() => {
       margin: 0.2em 1em 0.2em 0;
       border-radius: 0.2em;
       color: $white;
-      // border: 2px solid rgba($black, .7);
-      background: rgba($black, .75);
+      background: rgba($black, 0.75);
       padding: 0.4em 1.1em 0.4em;
       @extend .paragraph-small;
     }
@@ -83,7 +81,7 @@ onMounted(() => {
         }
       }
     }
-    
+
     &.showing {
       li {
         opacity: 1;

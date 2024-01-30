@@ -3,7 +3,6 @@
     <div class="video-container mb-40" v-if="project.video">
       <div class="iframe" v-html="project.video"></div>
     </div>
-
     <ul class="grid grid-2" aria-label="More media from the project">
       <li
         class="mb-20"

@@ -15,8 +15,6 @@
   </div>
 </template>
 
-
-
 <script setup>
 const props = defineProps({
   sections: {
@@ -24,5 +22,4 @@ const props = defineProps({
     default: [],
   },
 });
-
 </script>

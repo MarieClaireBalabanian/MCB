@@ -26,8 +26,7 @@ const props = defineProps({
 
 
 <style lang="scss">
-
- .body{
-    max-width: 65rem;
-  }
+.body {
+  max-width: 65rem;
+}
 </style>

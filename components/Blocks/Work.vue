@@ -117,18 +117,18 @@ onMounted(() => {
         transform-origin: center;
       }
 
-        .logo {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          opacity: 0;
-          width: 90%;
-          height: 50px;
-          transition: 0.8s ease 1s;
-          filter: grayscale(100%) brightness(0) invert(1)
-            drop-shadow(0 0 0.7rem $black);
-        }
+      .logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 90%;
+        height: 50px;
+        transition: 0.8s ease 1s;
+        filter: grayscale(100%) brightness(0) invert(1)
+          drop-shadow(0 0 0.7rem $black);
+      }
       .copy {
         position: relative;
         z-index: 3;
@@ -137,27 +137,27 @@ onMounted(() => {
 
         .copy-inner {
           opacity: 0;
-          transform: scale(.9);
+          transform: scale(0.9);
           transition: transform 1s ease, opacity 1s ease;
         }
       }
 
       &.showing {
-          .background-cover img {
-            transform: scale(1);
-            opacity: 1;
-            transition-delay: 0;
-          }
-          .logo {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-          }
+        .background-cover img {
+          transform: scale(1);
+          opacity: 1;
+          transition-delay: 0;
+        }
+        .logo {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
 
         &.active,
         &:focus-within {
           .copy-inner {
             opacity: 1;
-            transform:scale(1);
+            transform: scale(1);
           }
           .logo {
             transition: 0.4s ease;

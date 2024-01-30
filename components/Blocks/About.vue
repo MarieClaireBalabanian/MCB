@@ -81,7 +81,7 @@ onMounted(() => {
 
     &:not(.showing) {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(60px);
 
     }
     &.showing {

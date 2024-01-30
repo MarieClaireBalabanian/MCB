@@ -12,14 +12,15 @@
         <form @submit.prevent="submit" aria-label="Send us a mesage">
           <Transition name="list">
             <div
+              id="form-errors"
+              tabindex="-1"
               class="form-errors mb-40"
               v-if="srOnlyErrors.length"
-              aria-role="status"
+              aria-atomic="true"
+              aria-live="agressive"
             >
               <ol
-                ref="formErrorsRef"
                 class="text-red paragraph-small"
-                tabindex="-1"
                 aria-label="Form Errors"
               >
                 <li
@@ -158,20 +159,18 @@ const submit = () => {
     nextTick(() => {
       successMessageRef.value.focus();
       requiredFields.forEach((fieldName) => {
-        formInputs.value[fieldName].val = '';
+        formInputs.value[fieldName].val = "";
       });
     });
   } else {
     success.value = false;
     submitting.value = false;
     nextTick(() => {
-      formErrorsRef.value.focus();
+      scrollTo('form-errors', 'smooth');
     });
   }
 };
 
-
- 
 const runtimeConfig = useRuntimeConfig();
 async function send() {
   const data = {
@@ -204,6 +203,7 @@ async function send() {
 
   .form-errors {
     text-align: center;
+    outline: none;
 
     ol {
       display: inline-block;

@@ -7,12 +7,12 @@
 </template>
 
 <script setup>
-const year = new Date().getFullYear();
+  const year = new Date().getFullYear();
 </script>
 
 <style lang="scss">
-footer {
-  padding: 20px 0 20px;
-  background: $black;
-}
+  footer {
+    padding: 20px 0 20px;
+    background: $black;
+  }
 </style>

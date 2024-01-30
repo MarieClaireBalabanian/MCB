@@ -117,8 +117,8 @@ onMounted(() => {
     background: white;
     padding: 15px;
     width: 100%;
-	border-radius: 0;
-	 filter: drop-shadow(0 3px 2px)
+    border-radius: 0;
+    filter: drop-shadow(0 3px 2px);
   }
 
   textarea {
@@ -139,7 +139,7 @@ onMounted(() => {
   }
 
   label {
-	    background: white;
+    background: white;
 
     &.static {
       display: block;
