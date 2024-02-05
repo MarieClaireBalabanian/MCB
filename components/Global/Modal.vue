@@ -31,33 +31,33 @@
                 <button class="close" @click.stop="handleModal(false)">
                   <span class="sr-only">Close Modal</span>
                 </button>
+                <PartialsHero :project="project" />
 
-                <div class="container">
-                  <PartialsHero :project="project" />
-                  <section
-                    class="tab-section"
-                    :class="{ 'bg-black': activeTab === 0 }"
-                  >
-                    <div class="tablist" role="tablist" ref="tabRef">
-                      <button
-                        v-for="(item, index) in items"
-                        role="tab"
-                        class="project-tab tab paragraph bold text-center text-white"
-                        :id="'project-tab-' + index"
-                        :class="{ active: index === activeTab }"
-                        :aria-selected="
-                          index === activeTab ? true : false.toString()
-                        "
-                        :key="`buttontab${index}`"
-                        :aria-controls="'grid-panel-' + index"
-                        :tabindex="index === activeTab ? 0 : -1"
-                        @keyup.right="arrowFocus('right')"
-                        @keyup.left="arrowFocus('left')"
-                        @click="activeTab = index"
-                      >
-                        <span> {{ item.title }}</span>
-                      </button>
-                    </div>
+                <section
+                  class="tab-section"
+                  :class="{ 'bg-black': activeTab === 0 }"
+                >
+                  <div class="tablist" role="tablist" ref="tabRef">
+                    <button
+                      v-for="(item, index) in items"
+                      role="tab"
+                      class="project-tab tab paragraph bold text-center text-white"
+                      :id="'project-tab-' + index"
+                      :class="{ active: index === activeTab }"
+                      :aria-selected="
+                        index === activeTab ? true : false.toString()
+                      "
+                      :key="`buttontab${index}`"
+                      :aria-controls="'grid-panel-' + index"
+                      :tabindex="index === activeTab ? 0 : -1"
+                      @keyup.right="arrowFocus('right')"
+                      @keyup.left="arrowFocus('left')"
+                      @click="activeTab = index"
+                    >
+                      <span>{{ item.title }}</span>
+                    </button>
+                  </div>
+                  <div class="container">
                     <div
                       v-for="(panel, index) in items"
                       v-show="index === activeTab"
@@ -72,8 +72,8 @@
                         </component>
                       </div>
                     </div>
-                  </section>
-                </div>
+                  </div>
+                </section>
               </div>
             </div>
           </GlobalFocusTrap>
@@ -240,36 +240,47 @@ const handleModal = (val) => {
 
   .tablist {
     display: flex;
+    justify-content: center;
     > button {
-      width: 50%;
-      padding: 0.5em 0.8em;
-      background: $white;
-      border: 2px solid $green;
-      color: $black;
-
+      width: auto;
+      flex-grow: 0;
+      min-width: 38%;
+      padding: .6em .1em;
+      color: rgba($black, 0.5);
+      position: relative;
+    
       span {
-        display: inline-block;
-        transition: 0.4s ease;
-        transform: scale(0.9);
+        flex-grow: 0;
+     
+        &::before {
+          position: absolute;
+          content: "";
+          display: inline-block;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+
+        }
       }
       &.active {
-        color: $white;
-        background: $green;
         span {
-          transform: scale(1);
-          text-decoration: underline;
+          color: $green;
+          &::before {
+            background: $green;
+          }
         }
       }
     }
   }
 
-  .tab-section {
-    // &.bg-black {
-    //   background: $black;
-    // }
+  .tablist {
+    background: rgba($black, 0.08);
   }
   .panel-wrapper {
     padding: 50px 0 100px;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 }
 </style>

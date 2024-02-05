@@ -29,10 +29,10 @@ const { size, logo, gImage } = toRefs(props);
 
 const sizesSet = computed(() => {
   if (size.value === "desktop-medium")
-    return "xs:320px, sm:768px, md:768px, lg:768px, xl:800px, xxl:1024px";
+    return "xs:320px, sm:600px, md:768px, lg:768px, xl:800px, xxl:1024px";
   if (size.value === "desktop-large")
-    return "xs:320px, sm:768px, md:768px, lg:1024px, xl:1024px, xxl:1024px";
-  else return "xs:320px, sm:768px, md:768px, lg:1024px, xl:1440px, xxl:1440px";
+    return "xs:320px, sm:600px, md:768px, lg:1024px, xl:1024px, xxl:1024px";
+  else return "xs:320px, sm:600px, md:768px, lg:1024px, xl:1440px, xxl:1440px";
 });
 
 const cleanUrl = (url) => {

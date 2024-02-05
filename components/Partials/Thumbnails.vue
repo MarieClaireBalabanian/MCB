@@ -38,7 +38,7 @@ const blockRef = ref(null);
   }
 
   .global-image {
-    box-shadow: 0 0 2px 2px rgba($black, 0.2);
+    box-shadow: 0 0 2px 1px rgba($black, 0.2);
     overflow: visible;
   }
 

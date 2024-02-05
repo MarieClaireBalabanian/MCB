@@ -59,12 +59,18 @@ onMounted(() => {
 
   &.black {
     li {
-      margin: 0.2em 1em 0.2em 0;
+      margin: 0.5em 1em 0.5em 0;
       border-radius: 0.2em;
-      color: $white;
-      background: rgba($black, 0.75);
-      padding: 0.4em 1.1em 0.4em;
-      @extend .paragraph-small;
+      background: $white;
+      color: $black;
+      letter-spacing: 0.01em;
+      font-size: 0.9rem;
+      line-height: 1.2em;
+      padding: 0.5em 0.8em 0.5em;
+
+      @media (max-width: 768px) {
+        font-size: 0.8rem;
+      }
     }
   }
 

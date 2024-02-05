@@ -1,9 +1,11 @@
 <template>
   <section class="project-header">
-    <h2 class="h2-large mb-20" id="modal-title">
-      {{ project.title }}
-    </h2>
-    <PartialsTech :skills="project.tech" class="black" />
+    <div class="container">
+      <h2 class="h2-large mb-40" id="modal-title">
+        {{ project.title }}
+      </h2>
+      <PartialsTech :skills="project.tech" class="black" />
+    </div>
   </section>
 </template>
 
@@ -17,7 +19,9 @@ const props = defineProps({
 
 <style lang="scss">
 .project-header {
-  padding: 40px 0;
+  padding: 50px 0;
+  background: $black;
+  color: $white;
 
   .tech {
     display: flex;
@@ -25,7 +29,7 @@ const props = defineProps({
   }
 
   @media (min-width: 768px) {
-    padding: 70px 0;
+    padding: 80px 0;
   }
 }
 </style>

@@ -111,7 +111,7 @@ onMounted(() => {
 
       .background-cover img {
         transition: transform 0.8s ease 0.4s, opacity 0.8s ease 0.5s;
-        transform: scale(0);
+        transform: scale(.8);
         filter: sepia(40%) brightness(45%);
         opacity: 0;
         transform-origin: center;
