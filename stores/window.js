@@ -5,6 +5,7 @@ export const useWindowStore = defineStore('window', {
     scrollTop: 0,
     isDesktop: null,
     windowHeight: 0,
+    windowWidth: 0,
   }),
 
   actions: {},

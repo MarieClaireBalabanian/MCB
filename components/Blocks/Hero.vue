@@ -1,17 +1,17 @@
 <template>
-  <section ref="blockRef">
+  <section ref="blockRef" class="text-white pseudo-after">
     <GlobalImage
       :gImage="block.image.image"
       size="desktop-large"
-      class="background-cover"
+      class="background-cover absolute-cover pseudo-after"
       isEager
     />
-    <div class="container">
-        <h1 class="h1 heading mb-40">
-          MC<br />
-          Balabanian
-        </h1>
-        <h2 class="h2-alt heading">Web Developer</h2>
+    <div class="container text-right">
+      <h1 class="h1 heading mb-40">
+        MC<br />
+        Balabanian
+      </h1>
+      <h2 class="h2-alt heading">Web Developer</h2>
     </div>
   </section>
 </template>
@@ -23,10 +23,8 @@ const block = attrs.block;
 
 <style lang="scss">
 .block-hero {
-  position: relative;
   min-height: 100vh;
   padding: 80px 0;
-  color: $white;
   overflow: hidden;
   background: linear-gradient(0deg, #000, $green);
   display: flex;
@@ -40,9 +38,6 @@ const block = attrs.block;
   }
 
   &::after {
-    position: absolute;
-    content: "";
-    display: block;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -64,19 +59,12 @@ const block = attrs.block;
   }
 
   .global-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    right: unset;
     width: 50%;
     mix-blend-mode: lighten;
-    z-index: 0;
+    position: absolute;
 
     &::after {
-      position: absolute;
-      content: "";
-      display: block;
-      bottom: 0;
       right: 0;
       width: 30%;
       height: 100%;
@@ -102,6 +90,11 @@ const block = attrs.block;
     }
   }
 
+  .container {
+    position: relative;
+    z-index: 5;
+  }
+
   .heading {
     opacity: 0;
     filter: blur(5px);
@@ -109,28 +102,16 @@ const block = attrs.block;
 
   .h1 {
     margin-right: -0.1em;
+    animation: fadeIn 1.4s forwards 0.4s ease-in;
   }
 
   .h2-alt {
     margin-top: 7vh;
     line-height: 1.2em;
+    animation: fadeIn 1.4s forwards 0.9s ease-in;
 
     @media (max-width: 767px) {
       margin-top: 4vh;
-    }
-  }
-
-  .container {
-    position: relative;
-    z-index: 5;
-    text-align: right;
-
-    .h1 {
-      animation: fadeIn 1.4s forwards 0.4s ease-in;
-    }
-
-    .h2-alt {
-      animation: fadeIn 1.4s forwards 0.9s ease-in;
     }
   }
 

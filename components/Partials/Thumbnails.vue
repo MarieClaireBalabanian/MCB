@@ -5,12 +5,11 @@
     </div>
     <ul class="grid grid-2" aria-label="More media from the project">
       <li
-        class="mb-20"
         v-for="(image, index) in project.gallery.images"
         :key="`modal-${index}`"
         :class="{ full: !image.portrait }"
       >
-        <GlobalImage :gImage="image" size="desktop-large" isEager />
+        <GlobalImage :gImage="image" size="desktop-large" :isEager="isEager(index)" />
       </li>
     </ul>
   </section>
@@ -26,6 +25,10 @@ const props = defineProps({
 
 const { project } = toRefs(props);
 const blockRef = ref(null);
+
+const isEager = (index) => {
+  return index < 2;
+}
 </script>
 
 

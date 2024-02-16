@@ -5,7 +5,6 @@
 </template>
 
  <script setup>
-
     import { useWindowStore } from '@/stores/window';
   
     const windowStore = useWindowStore();
@@ -13,7 +12,9 @@
       windowStore.scrollTop = window.scrollY;
     };
     const resize = () => {
-      windowStore.isDesktop = window.innerWidth >= 768;
+      const width = window.innerWidth;
+      windowStore.isDesktop = width >= 768;     
+      windowStore.windowWidth = width;
       windowStore.windowHeight = window.innerHeight;
     };
     onMounted(() => {

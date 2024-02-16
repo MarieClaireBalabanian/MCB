@@ -2,12 +2,12 @@
   <section v-if="block.blurbs" class="block-padding">
     <GlobalImage
       size="desktop-small"
-      class="background-cover"
+      class="background-cover absolute-cover"
       :gImage="block.Image.image"
     />
 
     <div class="container">
-      <h2 class="h2 mb-40 text-black">{{ block.title }}</h2>
+    <PartialsTitle :title="block.title" color="black" direction="to-right" class="mb-80" />
 
       <div class="copy-container">
         <div
@@ -34,6 +34,7 @@ const block = attrs.block;
 const currentIndex = ref(0);
 const observer = ref(null);
 const slidesRef = ref([]);
+const blockRef = ref(null);
 
 const initObserver = () => {
   const options = { threshold: 1 };
@@ -90,15 +91,7 @@ onMounted(() => {
     }
   }
 
-  .container {
-    position: relative;
-    z-index: 3;
-  }
-
   .global-image {
-    position: absolute;
-    inset: 0 0 0 0;
-    width: 100%;
     mix-blend-mode: screen;
     img {
       filter: grayscale(100%);

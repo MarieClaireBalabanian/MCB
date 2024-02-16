@@ -6,7 +6,7 @@
       v-for="(item, index) in skills"
       :key="`tech-${index}`"
     >
-      {{ item }}
+      <span>{{ item }}</span>
     </li>
   </ul>
 </template>
@@ -78,7 +78,16 @@ onMounted(() => {
     li {
       transition: opacity 0.8s ease-out;
       opacity: 0;
-    }
+
+        span {
+          display: inline-block;
+          padding: 2px;
+          background-image: linear-gradient(to bottom, $white 0%, $white 100%);
+          background-repeat: no-repeat;
+          background-size: 50% 1px;
+          background-position: 0 100%;
+        }
+      }
 
     @media (min-width: 768px) {
       @for $i from 1 to 22 {

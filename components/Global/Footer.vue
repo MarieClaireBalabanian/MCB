@@ -1,7 +1,7 @@
 <template>
-  <footer role="contentinfo">
-    <div class="container text-center">
-      <p class="paragraph-small text-white">&copy; {{ year }} Marie-Claire Balabanian</p>
+  <footer role="contentinfo" class="bg-black text-center text-white">
+    <div class="container">
+      <p class="paragraph-small">&copy; {{ year }} Marie-Claire Balabanian</p>
     </div>
   </footer>
 </template>
@@ -13,6 +13,5 @@
 <style lang="scss">
   footer {
     padding: 20px 0 20px;
-    background: $black;
   }
 </style>

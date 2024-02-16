@@ -1,35 +1,34 @@
 <template>
-  <section class="block-padding text-white">
+  <section class="block-padding text-white bg-black">
     <div class="container">
-      <h2 class="h2 mb-40 text-center">{{ block.title }}</h2>
+      <div class="header text-center">
+        <PartialsTitle :title="block.title" color="white" direction="to-left" class="mb-80" />
+      </div>
       <PartialsTech :skills="block.skills" animate />
     </div>
   </section>
 </template>
 
 <script setup>
-  const attrs = useAttrs();
-  const block = attrs.block;
+const attrs = useAttrs();
+const block = attrs.block;
 </script>
 
 
 <style lang="scss">
-  .block-skills {
-    background: $black;
-
+.block-skills {
+  .tech {
+    columns: 2;
+    column-gap: 1vw;
+  }
+  @media (min-width: 768px) {
     .tech {
-      columns: 2;
-      column-gap: 1vw;
-    }
+      columns: 4;
 
-    @media (min-width: 768px) {
-      .tech {
-        columns: 4;
-
-        li {
-          break-inside: avoid;
-        }
+      li {
+        break-inside: avoid;
       }
     }
   }
+}
 </style>

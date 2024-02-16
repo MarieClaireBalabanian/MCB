@@ -27,8 +27,6 @@ $header-height: 45px;
 .m-auto {
     margin-right: auto;
     margin-left: auto;
-
-
 }
 
 .mright-auto {
@@ -84,7 +82,6 @@ $header-height: 45px;
     }
 }
 
-
 .flex-align-center {
     display: flex;
     align-items: center;
@@ -94,60 +91,37 @@ $header-height: 45px;
     }
 }
 
-.clip {
-    -webkit-clip-path: polygon(0 0,
-            0 0,
-            98% 0,
-            c 98% 28%,
-            100% 28%,
-            100% 100%,
-            35% 100%,
-            35% 97%,
-            2% 97%,
-            2% 57%,
-            0 57%);
-    clip-path: polygon(0 0,
-            0 0,
-            98% 0,
-            98% 28%,
-            100% 28%,
-            100% 100%,
-            35% 100%,
-            35% 97%,
-            2% 97%,
-            2% 57%,
-            0 57%);
+.bg-black {
+    background: $black;
 }
 
-
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: 400ms ease-in-out;
-    opacity: 0;
+.bg-white {
+    background: $white;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
+%pseudo {
+    display: block;
+    content: '';
+    position: absolute;
 }
 
-.fade-enter-to {
-    opacity: 1;
-}
-
-
-
-
-a,
-button,
-input,
-textarea,
-select {
-    &:focus {
-        outline-color: #58aeff;
-        outline-offset: 2px;
-        outline-style: solid;
-        outline-width: 2px;
+.pseudo-before-after {
+    position: relative;
+    &::before, &::after {
+        @extend %pseudo;
     }
+}
+
+.pseudo-before {
+    position: relative;
+    &::before {
+        @extend %pseudo;
+    }   
+}
+
+.pseudo-after {
+    position: relative;
+    &::after {
+        @extend %pseudo;
+    }   
 }

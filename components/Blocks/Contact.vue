@@ -1,8 +1,8 @@
 <template>
-  <section class="block-padding bottom-line">
+  <section class="block-padding bottom-line bg-black text-white">
     <div class="container">
-      <div class="half copy text-white mb-20">
-        <h2 class="h2 mb-40">{{ block.title }}</h2>
+      <div class="half copy mb-20">
+        <PartialsTitle :title="block.title" color="white" direction="to-left" class="mb-40" />
         <div class="paragraph">
           <SanityContent :blocks="block.contact_copy" />
         </div>
@@ -196,7 +196,6 @@ async function send() {
 
 <style lang="scss">
 .block-contact {
-  background: $black;
   .fields {
     grid-gap: 15px;
   }
@@ -231,6 +230,10 @@ async function send() {
       justify-content: space-between;
       .half {
         width: calc(50% - 40px);
+
+        &.copy {
+          overflow: hidden;
+        }
       }
     }
     .fields {

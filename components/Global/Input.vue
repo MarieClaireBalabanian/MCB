@@ -35,7 +35,7 @@
       :id="name"
       :name="name"
     />
-    <p class="error" v-if="error" :id="name + '-error'">{{ error }}</p>
+    <p class="error text-white" v-if="error" :id="name + '-error'">{{ error }}</p>
   </div>
 </template>
 
@@ -118,7 +118,7 @@ onMounted(() => {
     padding: 15px;
     width: 100%;
     border-radius: 0;
-    filter: drop-shadow(0 3px 2px);
+    color: $black;
   }
 
   textarea {
@@ -139,13 +139,14 @@ onMounted(() => {
   }
 
   label {
-    background: white;
+
 
     &.static {
       display: block;
       margin-bottom: 10px;
     }
     &.absolute {
+      background: white;
       transition: 0.25s ease;
       pointer-events: none;
       touch-action: none;
@@ -154,13 +155,13 @@ onMounted(() => {
       transform: translateY(-50%);
       left: 15px;
       z-index: 2;
+      color: $black;
     }
   }
 
   .error {
     @extend .paragraph-small;
     position: absolute;
-    color: $white;
     top: 100%;
     left: 0;
   }

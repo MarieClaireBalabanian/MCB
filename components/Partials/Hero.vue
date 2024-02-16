@@ -1,5 +1,5 @@
 <template>
-  <section class="project-header">
+  <section class="project-header text-white bg-black">
     <div class="container">
       <h2 class="h2-large mb-40" id="modal-title">
         {{ project.title }}
@@ -20,9 +20,7 @@ const props = defineProps({
 <style lang="scss">
 .project-header {
   padding: 50px 0;
-  background: $black;
-  color: $white;
-
+  
   .tech {
     display: flex;
     flex-wrap: wrap;

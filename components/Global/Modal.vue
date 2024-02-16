@@ -28,20 +28,22 @@
                 ref="modalRef"
                 aria-labelledby="modal-title"
               >
-                <button class="close" @click.stop="handleModal(false)">
+                <button
+                  class="close pseudo-before-after"
+                  @click.stop="handleModal(false)"
+                >
                   <span class="sr-only">Close Modal</span>
                 </button>
                 <PartialsHero :project="project" />
 
                 <section
                   class="tab-section"
-                  :class="{ 'bg-black': activeTab === 0 }"
                 >
-                  <div class="tablist" role="tablist" ref="tabRef">
+                  <div class="tablist pseudo-after" role="tablist" ref="tabRef">
                     <button
                       v-for="(item, index) in items"
                       role="tab"
-                      class="project-tab tab paragraph bold text-center text-white"
+                      class="project-tab tab paragraph-small text-center"
                       :id="'project-tab-' + index"
                       :class="{ active: index === activeTab }"
                       :aria-selected="
@@ -54,7 +56,7 @@
                       @keyup.left="arrowFocus('left')"
                       @click="activeTab = index"
                     >
-                      <span>{{ item.title }}</span>
+                      <span class="pseudo-before">{{ item.title }}</span>
                     </button>
                   </div>
                   <div class="container">
@@ -67,10 +69,19 @@
                       class="tabpanel"
                       :aria-labelledby="'project-tab-' + index"
                     >
-                      <div class="panel-wrapper" v-show="index === activeTab">
-                        <component :is="panel.content" :project="project">
-                        </component>
-                      </div>
+                      <transition name="show">
+                        <div
+                          class="panel-wrapper"
+                          v-show="index === activeTab"
+                          :class="{
+                            hide: index !== activeTab,
+                            show: index === activeTab,
+                          }"
+                        >
+                          <component :is="panel.content" :project="project">
+                          </component>
+                        </div>
+                      </transition>
                     </div>
                   </div>
                 </section>
@@ -99,7 +110,7 @@ const items = [
     content: "PartialsThumbnails",
   },
   {
-    title: "About the Project",
+    title: "Description",
     content: `PartialsProjectDescription`,
   },
 ];
@@ -154,7 +165,6 @@ const handleModal = (val) => {
 
 <style lang="scss">
 .modal {
-  // color: $white;
   position: fixed;
   left: 0;
   top: 0;
@@ -171,6 +181,7 @@ const handleModal = (val) => {
 
   .modal-content {
     background: $white;
+    min-height: 100vh;
   }
 
   .close {
@@ -191,14 +202,11 @@ const handleModal = (val) => {
 
     &::before,
     &::after {
-      background: $black;
-      content: "";
-      display: block;
       height: 2px;
       left: 8px;
-      position: absolute;
       top: 16px;
       width: 20px;
+      background: $black;
     }
 
     &::before {
@@ -241,33 +249,40 @@ const handleModal = (val) => {
   .tablist {
     display: flex;
     justify-content: center;
+    &::after {
+      top: 0;
+      bottom: 0;
+      left: calc(50% - 1px);
+      background: $black;
+      width: 2px;
+    }
+
     > button {
       width: auto;
       flex-grow: 0;
       min-width: 38%;
-      padding: .6em .1em;
-      color: rgba($black, 0.5);
+      padding: 0.6em 0.1em;
+      color: rgba($black, 0.7);
       position: relative;
-    
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+
       span {
         flex-grow: 0;
-     
+
         &::before {
-          position: absolute;
-          content: "";
-          display: inline-block;
           bottom: 0;
           left: 0;
           width: 100%;
           height: 3px;
-
         }
       }
       &.active {
         span {
-          color: $green;
+          color: $black;
           &::before {
-            background: $green;
+            background: $black;
           }
         }
       }
@@ -275,12 +290,30 @@ const handleModal = (val) => {
   }
 
   .tablist {
-    background: rgba($black, 0.08);
+    background: $yellow;
   }
   .panel-wrapper {
     padding: 50px 0 100px;
     max-width: 1000px;
     margin: 0 auto;
+  }
+
+  .show-enter-from {
+    opacity: 0;
+  }
+
+  .show-leave-to {
+    opacity: 0;
+  }
+
+  .show-enter-to,
+  .show-leave {
+    opacity: 1;
+  }
+
+  .show-enter-active,
+  .show-leave-active {
+    transition: 0.4s ease;
   }
 }
 </style>
