@@ -36,14 +36,12 @@
                 </button>
                 <PartialsHero :project="project" />
 
-                <section
-                  class="tab-section"
-                >
-                  <div class="tablist pseudo-after" role="tablist" ref="tabRef">
+                <section class="tab-section">
+                  <div class="tablist" role="tablist" ref="tabRef">
                     <button
                       v-for="(item, index) in items"
                       role="tab"
-                      class="project-tab tab paragraph-small text-center"
+                      class="project-tab tab paragraph-small text-center pseudo-before"
                       :id="'project-tab-' + index"
                       :class="{ active: index === activeTab }"
                       :aria-selected="
@@ -56,7 +54,7 @@
                       @keyup.left="arrowFocus('left')"
                       @click="activeTab = index"
                     >
-                      <span class="pseudo-before">{{ item.title }}</span>
+                      <span>{{ item.title }}</span>
                     </button>
                   </div>
                   <div class="container">
@@ -249,49 +247,38 @@ const handleModal = (val) => {
   .tablist {
     display: flex;
     justify-content: center;
-    &::after {
-      top: 0;
-      bottom: 0;
-      left: calc(50% - 1px);
-      background: $black;
-      width: 2px;
-    }
-
+    background: rgba(0, 0, 0, 0.08);
     > button {
       width: auto;
       flex-grow: 0;
       min-width: 38%;
       padding: 0.6em 0.1em;
-      color: rgba($black, 0.7);
+      color: rgba($black, 0.6);
       position: relative;
       text-transform: uppercase;
       letter-spacing: 0.02em;
       font-weight: 500;
+      &::before {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+      }
 
       span {
         flex-grow: 0;
-
-        &::before {
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 3px;
-        }
       }
       &.active {
+        &::before {
+          background: $green;
+        }
         span {
-          color: $black;
-          &::before {
-            background: $black;
-          }
+          color: $green;
         }
       }
     }
   }
 
-  .tablist {
-    background: $yellow;
-  }
   .panel-wrapper {
     padding: 50px 0 100px;
     max-width: 1000px;

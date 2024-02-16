@@ -112,7 +112,7 @@
     left: 0;
     width: 100vw;
     z-index: 999;
-    transition: 0.5s ease;
+    transition: background .4s ease, color .4s ease;
     color: $white;
 
     &.bg {
