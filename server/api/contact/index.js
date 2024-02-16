@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
     let message;
 
-\    await $fetch(`https://api.postmarkapp.com/email`, {
+    await $fetch(`https://api.postmarkapp.com/email`, {
       method: 'POST',
       body: event.req,
       headers: headers,
