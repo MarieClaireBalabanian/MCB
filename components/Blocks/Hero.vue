@@ -2,7 +2,7 @@
   <section ref="blockRef" class="text-white pseudo-after">
     <GlobalImage
       :gImage="block.image.image"
-      size="desktop-large"
+      size="desktop-medium"
       class="background-cover absolute-cover pseudo-after"
       isEager
     />
