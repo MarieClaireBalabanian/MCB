@@ -9,7 +9,7 @@
         :key="`modal-${index}`"
         :class="{ full: !image.portrait }"
       >
-        <GlobalImage :gImage="image" size="desktop-large" :isEager="isEager(index)" />
+        <GlobalImage :gImage="image" size="desktop-large" :isEager="index < 2 ? true : false" />
       </li>
     </ul>
   </section>
@@ -26,9 +26,6 @@ const props = defineProps({
 const { project } = toRefs(props);
 const blockRef = ref(null);
 
-const isEager = (index) => {
-  return index < 2;
-}
 </script>
 
 
