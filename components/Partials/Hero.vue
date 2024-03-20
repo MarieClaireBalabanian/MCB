@@ -19,7 +19,7 @@ const props = defineProps({
 
 <style lang="scss">
 .project-header {
-  padding: 50px 0;
+  padding: 90px 0 70px;
   
   .tech {
     display: flex;
@@ -27,7 +27,7 @@ const props = defineProps({
   }
 
   @media (min-width: 768px) {
-    padding: 80px 0;
+    padding: 120px 0 100px;
   }
 }
 </style>

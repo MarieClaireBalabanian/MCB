@@ -9,7 +9,7 @@
         :key="`modal-${index}`"
         :class="{ full: !image.portrait }"
       >
-        <GlobalImage :gImage="image" size="desktop-large" :isEager="index < 2 ? true : false" />
+        <GlobalImage :gImage="image" size="desktop-medium" :isEager="index < 2 ? true : false" />
       </li>
     </ul>
   </section>

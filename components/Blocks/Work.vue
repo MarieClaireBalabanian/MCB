@@ -38,7 +38,8 @@
               </p>
 
               <div class="actions">
-                <GlobalModal :project="project" />
+                <!-- <GlobalModal :project="project" /> -->
+                <NuxtLink class="button" :to="`/${project.slug.current}`" :aria-label="`Learn more about ${project.title}`">Learn More</NuxtLink>
               </div>
             </div>
           </div>
@@ -52,11 +53,17 @@
 const attrs = useAttrs();
 const block = attrs.block;
 
+// get data
 const query = groq`*[_type == "project"] | order(order)`;
 const sanity = useSanity();
 const { data } = await useAsyncData("projects", () => sanity.fetch(query));
 
-const observer = ref(null);
+// set data
+import { useProjectsStore } from '../stores/projects';
+const projectsStore = useProjectsStore()
+projectsStore.setProjectsData(data.value)
+
+// hover actions
 const hovering = ref(null);
 
 </script>

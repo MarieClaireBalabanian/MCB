@@ -3,9 +3,9 @@
     <div class="container">
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav class="items-container" @keyup.esc="closeNav('esc')" aria-label="Main Navigation">
-          <a href="#hero" class="logo mright-auto" @click.prevent="scroll('hero')">
+          <NuxtLink :to="'/'" class="logo mright-auto" @click.prevent="closeNav">
             <span>MCB</span>
-          </a>
+          </NuxtLink>
 
           <div class="button-wrapper">
             <button id="menu-toggle" aria-haspopup="true" class="hamburger" ref="hamburgerRef" @click="toggleNav"
@@ -28,9 +28,9 @@
                 <div class="inner-menu" tabindex="-1" id="inner-menu" aria-label="Expanded Navigation">
                   <ul class="items">
                     <li v-for="(item, index) in menu" :key="`nav-${index}`">
-                      <a class="h2-alt" @click.prevent="scroll(item.slug)" :href="`#${item.slug}`" ref="linkRef">
+                      <NuxtLink class="h2-alt" @click.prevent="closeNav" :to="item.slug">
                         {{ item.title }}
-                      </a>
+                      </NuxtLink>
                     </li>
                   </ul>
                 </div>
@@ -44,11 +44,8 @@
 </template>
 
 <script setup>
-  import { scrollTo } from "@/composables/scrollTo.js";
-
   import { useWindowStore } from "@/stores/window";
 
-  const linkRef = ref([])
   const hamburgerRef = ref(null)
 
   const windowStore = useWindowStore();
@@ -58,9 +55,9 @@
   });
 
   const menu = [
-    { title: "Work", slug: "work" },
-    { title: "About", slug: "about" },
-    { title: "Contact", slug: "contact" },
+    { title: "Work", slug: "/#work" },
+    { title: "About", slug: "/#about" },
+    { title: "Contact", slug: "/#contact" },
   ];
 
   const open = ref(false);
@@ -74,8 +71,6 @@
     open.value = true;
     nextTick(() => {
       document.body.classList.add("lock-scroll");
-      const focus = linkRef.value[0];
-      focus.focus();
     });
   };
 
@@ -87,17 +82,6 @@
         hamburgerRef.value.focus();
       })
     }
-  };
-
-  const scroll = (id) => {
-    const anim = open.value ? "instant" : "smooth";
-    if (open.value) closeNav();
-    scrollTo(id, anim);
-  };
-
-  const skipToContent = () => {
-    const anchor = document.getElementById("main");
-    anchor.focus();
   };
 
   const hamburgerSR = computed(() => {

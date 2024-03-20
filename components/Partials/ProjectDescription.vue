@@ -1,7 +1,7 @@
 <template>
   <div class="project-description">
     <div class="body">
-      <div class="mb-80" v-if="project.description">
+      <div v-if="project.description">
         <div class="paragraph mb-40">
           <SanityContent :blocks="project.description" />
         </div>
@@ -23,10 +23,3 @@ const props = defineProps({
   project: Object,
 });
 </script>
-
-
-<style lang="scss">
-.body {
-  max-width: 65rem;
-}
-</style>
