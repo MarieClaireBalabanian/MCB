@@ -20,6 +20,8 @@
     "@nuxtjs/google-fonts": "^3.0.2",
     "@nuxtjs/sanity": "^1.8.3",
     "@pinia/nuxt": "^0.5.1",
+    "@sendgrid/mail": "^8.1.1",
+    "axois": "^0.0.1-security",
     "focus-options-polyfill": "^1.6.0",
     "pinia": "^2.1.7",
     "postmark": "^4.0.2",

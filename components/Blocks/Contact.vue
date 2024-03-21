@@ -171,26 +171,20 @@ const submit = () => {
   }
 };
 
-const runtimeConfig = useRuntimeConfig();
 async function send() {
   const data = {
-    From: "hello@mcbalabanian.io",
-    To: "hello@mcbalabanian.io",
-    HtmlBody: `
-        <h2>${formInputs.value.name.val}</h2>
-        <h3>${formInputs.value.email.val}</h3>
-        <p>${formInputs.value.message.val}</p>
-    `,
-  };
-
+    name: formInputs.value.name.val,
+    email: formInputs.value.email.val,
+    message: formInputs.value.message.val,
+  }
   await $fetch("/api/contact", {
     method: "POST",
     body: JSON.stringify(data),
   })
-    .then(() => {})
-    .catch((error) => {
-      console.error("addEmailSignup error: ", error);
-    });
+  .then(() => {})
+  .catch((error) => {
+    console.error("contact form error: ", error);
+  });
 }
 </script>
 

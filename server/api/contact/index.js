@@ -1,28 +1,35 @@
+import sgMail from '@sendgrid/mail'
+
 export default defineEventHandler(async (event) => {
-    const runtimeConfig = useRuntimeConfig();
-    const API_TOKEN = runtimeConfig.public.postmark;
+  const runtimeConfig = useRuntimeConfig();
+  const sendgrid_api_key = runtimeConfig.public.sendgrid_api_key;
+  const sendgrid_from = runtimeConfig.public.sendgrid_from;
+  const sendgrid_to = runtimeConfig.public.sendgrid_to;
 
-    const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'X-Postmark-Server-Token': API_TOKEN,
-    };
-
-    let message;
-
-    await $fetch(`https://api.postmarkapp.com/email`, {
-      method: 'POST',
-      body: event.req,
-      headers: headers,
-      duplex: 'half',
-    })
-      .then((response) => {
-        message = response;
-      })
-      .catch((error) => {
-        message = `Email failed to send, error: ${error}`;
-      });
-
-    return message;
+  sgMail.setApiKey(sendgrid_api_key)
   
+  const msg = {
+    to: `${sendgrid_to}`, //  your recipient
+    from: `${sendgrid_from}`, //  your verified sender of sendgrid account
+    subject: 'CONTACT FORM SUBMISSION',
+    html: '<h2>testing</h2>'
+  }
+
+  if (event.req?.method === 'POST') {
+    const body =  await readBody(event);
+    msg.html = `<h2>${body.name}</h2>
+                <h3>${body.email}</h3>
+                <p>${body.message}</p>`
+    msg.replyTo = `${body.email}`
+  }
+  try {
+    await sgMail
+      .send(msg)
+      .catch((error) => {
+        console.error(error)
+      })
+  } catch (error) {
+    console.log('ERROR', error)
+    res.status(400).send('error')
+  }
 });

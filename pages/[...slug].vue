@@ -6,7 +6,6 @@
           <GlobalStream v-if="type === 'pages' && pageData?.pageBuilder" :sections="pageData.pageBuilder" />
           <ProjectDetail v-if="type === 'project'" :project="pageData" />
         </template>
-
       </main>
     </article>
   </div>
@@ -36,7 +35,6 @@ const sanity = useSanity();
 const { data } = await useAsyncData(`${type}`, () => sanity.fetch(query));
 const pageData = data?.value[0];
 
-console.log(pageData)
 </script>
 
 <style lang="scss">
