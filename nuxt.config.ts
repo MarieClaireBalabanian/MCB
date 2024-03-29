@@ -53,6 +53,14 @@ export default defineNuxtConfig({
           sizes: '32x32',
           href: '/img/favicons/favicon-32x32.png',
         },
+        {
+          rel: 'preconnect',
+          href: `${process.env.SANITY_ID}.api.sanity.io`,
+        },
+        {
+          rel: 'dns-prefetch',
+          href: `${process.env.IMAGEKIT}.api.sanity.io`,
+        }
       ],
     },
   },
