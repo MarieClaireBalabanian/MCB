@@ -128,6 +128,9 @@ const submitting = ref(false);
 const success = ref(false);
 const successMessageRef = ref(null);
 
+
+
+// TODO: this could be a composable
 const validateForm = () => {
   let valid = true;
   // Validates the whole form, including unique required validation

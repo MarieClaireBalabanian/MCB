@@ -1,4 +1,5 @@
 <template>
+  <!-- this component is key for modals, trapping keyboard focus for accessibility reasons. -->
   <div class="focus-lock" ref="focusEl">
     <div :tabindex="enabled ? 0 : 1" @focus="focusOut('start')"></div>
     <slot></slot>

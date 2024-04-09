@@ -24,6 +24,8 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
+
+// replace all the css filter processing with a pre-processed image for performance issues.
 .block-hero {
   min-height: 100vh;
   padding: 80px 0;

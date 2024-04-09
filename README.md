@@ -1,8 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Portfolio, highlighting fun projects
+Built w/ Nuxt and Sanity.io, using Nuxt-img and imagekit.io for image optimization
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
 
 Make sure to install the dependencies:
 

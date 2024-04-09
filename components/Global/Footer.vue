@@ -1,5 +1,5 @@
 <template>
-  <footer role="contentinfo" class="bg-black text-center text-white">
+  <footer class="bg-black text-center text-white">
     <div class="container">
       <p class="paragraph-small">&copy; {{ year }} Marie-Claire Balabanian</p>
     </div>
