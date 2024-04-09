@@ -94,8 +94,10 @@
 import validators from "~/composables/validators";
 import { scrollTo } from "../../composables/scrollTo.js";
 
-const attrs = useAttrs();
-const block = attrs.block;
+const props = defineProps({
+  block: Object,
+  required: true
+})
 
 const requiredFields = ["name", "email", "message"];
 const srOnlyErrors = ref([]);

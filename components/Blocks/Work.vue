@@ -3,6 +3,9 @@
     <div class="container">
       <PartialsTitle :title="block.title" color="white" direction="to-right" class="mb-40"/>
       <ul>
+
+        <!-- using mouseover and mouseleave allows for tapping on mobile to reveal content without navigation.
+        :hover alone will not. -->
         <li
           v-for="(project, index) in data"
           :data-id="index"
@@ -38,6 +41,7 @@
               </p>
 
               <div class="actions">
+                <!-- nix moal for dedicated detail page -->
                 <!-- <GlobalModal :project="project" /> -->
                 <NuxtLink class="button" :to="`/${project.slug.current}`" :aria-label="`Learn more about ${project.title}`">Learn More</NuxtLink>
               </div>
@@ -50,11 +54,19 @@
 </template>
 
 <script setup>
-const attrs = useAttrs();
-const block = attrs.block;
+const props = defineProps({
+  block: Object,
+  required: true
+})
 
 // get data
-const query = groq`*[_type == "project"] | order(order)`;
+const query = groq`*[_type == "project"] | order(order) {
+          _id,
+          thumbnail,
+          slug,
+          image,
+          subtitle
+      }`;
 const sanity = useSanity();
 const { data } = await useAsyncData("projects", () => sanity.fetch(query));
 

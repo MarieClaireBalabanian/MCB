@@ -5,9 +5,10 @@
 </template>
 
 <script setup>
+
+/////
 // TO DO. Some kind of weird animation thingy
-
-
+/////
 
 
 const props = defineProps({
@@ -16,7 +17,7 @@ const props = defineProps({
   direction: String,
 });
 // const { direction, color } = toRefs(props)
-const titleRef = ref(null);
+// const titleRef = ref(null);
 
 // import { useWindowStore } from '@/stores/window';
 // const windowStore = useWindowStore();

@@ -22,21 +22,19 @@
 
           <div class="bg" :class="{ show: open, hide: !open }"></div>
 
-          <transition name="showItems">
-            <div class="items-wrapper" v-show="open">
-              <div class="container">
-                <div class="inner-menu" tabindex="-1" id="inner-menu" aria-label="Expanded Navigation">
-                  <ul class="items">
-                    <li v-for="(item, index) in menu" :key="`nav-${index}`">
-                      <NuxtLink class="h2-alt" @click.prevent="closeNav" :to="item.slug">
-                        {{ item.title }}
-                      </NuxtLink>
-                    </li>
-                  </ul>
-                </div>
+          <div class="items-wrapper" :class="{ show: open, hide: !open }"> 
+            <div class="container">
+              <div class="inner-menu" tabindex="-1" id="inner-menu" aria-label="Expanded Navigation">
+                <ul class="items">
+                  <li v-for="(item, index) in menu" :key="`nav-${index}`">
+                    <NuxtLink class="h2-alt" @click.prevent="closeNav" :to="item.slug" :tabindex="open ? 0 : -1">
+                      {{ item.title }}
+                    </NuxtLink>
+                  </li>
+                </ul>
               </div>
             </div>
-          </transition>
+          </div>
         </nav>
       </GlobalFocusTrap>
     </div>
@@ -50,7 +48,6 @@
 
   const windowStore = useWindowStore();
   const showBg = computed(() => {
-    let scroll = windowStore.scrollTop;
     return windowStore.scrollTop > 20;
   });
 
@@ -191,6 +188,7 @@
       display: flex;
       justify-content: space-between;
       padding-top: 7px;
+      pointer-events: auto;
     }
 
     .items-wrapper {
@@ -206,6 +204,23 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      &.show {
+        ul {
+          opacity: 1;
+          transform: translate3d(0,0,0);
+          transition: .6s ease .7s;
+
+        }
+      }
+
+      &.hide {
+        ul {
+          opacity: 0;
+          transform: translate3d(0,200px,0);
+          transition: .4s ease;
+        }
+      }
 
       ul {
         padding: 90px 0 90px 4.5vw;
@@ -235,7 +250,6 @@
     }
 
     &.open {
-
       .logo,
       &.bg .logo {
         color: $white;
@@ -245,10 +259,6 @@
           color: $white;
           border-color: $white;
         }
-      }
-
-      .items-container {
-        pointer-events: auto;
       }
 
       .button-wrapper {
@@ -267,33 +277,6 @@
             transform: translate(-9px, 5px) rotate(-45deg);
           }
         }
-      }
-    }
-
-    .showItems-enter-active {
-      transition: transform 0.4s ease-out 0.65s, opacity 0.6s ease-out 0.69s;
-    }
-
-    .showItems-leave-active {
-      transition: 0.2s ease-out;
-    }
-
-    .showItems-enter-from,
-    .showItems-leave-to {
-      opacity: 0;
-      transform: translate3d(0, 200px, 0);
-    }
-
-    .showItems-enter-to,
-    .showItems-leave {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    @keyframes header-show {
-      100% {
-        transform: translateY(0);
-        opacity: 1;
       }
     }
   }

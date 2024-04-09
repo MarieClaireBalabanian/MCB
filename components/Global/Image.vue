@@ -25,8 +25,9 @@ const props = defineProps({
   logo: Boolean,
 });
 
-const { size, logo, gImage } = toRefs(props);
+const { size, gImage } = toRefs(props);
 
+// responsive breakpoint size settings
 const sizesSet = computed(() => {
   if (size.value === "desktop-medium")
     return "xs:320px, sm:600px, md:768px, lg:768px, xl:800px, xxl:1024px";

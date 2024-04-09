@@ -17,8 +17,10 @@
 </template>
 
 <script setup>
-const attrs = useAttrs();
-const block = attrs.block;
+const props = defineProps({
+  block: Object,
+  required: true
+})
 </script>
 
 <style lang="scss">

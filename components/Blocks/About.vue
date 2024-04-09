@@ -28,8 +28,10 @@
 
 
 <script setup>
-const attrs = useAttrs();
-const block = attrs.block;
+const props = defineProps({
+  block: Object,
+  required: true
+})
 
 const currentIndex = ref(0);
 const observer = ref(null);
