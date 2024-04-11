@@ -215,6 +215,7 @@
       }
 
       &.hide {
+        pointer-events: none;
         ul {
           opacity: 0;
           transform: translate3d(0,200px,0);
