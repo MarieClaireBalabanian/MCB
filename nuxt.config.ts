@@ -111,20 +111,6 @@ export default defineNuxtConfig({
     },
   },
 
-  image: {
-    provider: "imagekit",
-    imagekit: {
-      baseURL: process.env.IMAGEKIT,
-    },
-    screens: {
-        xs: 320,
-        sm: 640,
-        md: 768,
-        lg: 1024,
-        xl: 1536,
-    },
-  },
-
   plugins: [
     '~/plugins/sanityImageBuilder'
   ]

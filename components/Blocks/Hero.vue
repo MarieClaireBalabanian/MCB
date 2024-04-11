@@ -11,7 +11,7 @@
         MC<br />
         Balabanian
       </h1>
-      <h2 class="h2-alt heading">Web Developer</h2>
+      <h2 class="h2-alt heading">Front-end Developer</h2>
     </div>
   </section>
 </template>
@@ -25,7 +25,6 @@ const props = defineProps({
 
 <style lang="scss">
 
-// replace all the css filter processing with a pre-processed image for performance issues.
 .block-hero {
   min-height: 100vh;
   padding: 80px 0;

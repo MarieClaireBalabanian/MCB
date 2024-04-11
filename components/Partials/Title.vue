@@ -35,7 +35,7 @@ const props = defineProps({
 //     if (direction.value === 'to-right') width = el.left;
 //     else width = windowWidth.value - el.right;
 //     titleWidth.value = width;
-//     console.log(width)
+//     (width)
 // }
 
 // const styles = computed(() => {

@@ -1,16 +1,5 @@
 <template>
   <div class="global-image">
-    <!-- <SanityImage :asset-id="gImage.asset._ref">
-      <template #default="{ src }">
-        <NuxtPicture
-          :src="cleanUrl(src)"
-          :alt="gImage.alt"
-          :sizes="sizesSet"
-          :loading="load"
-        />
-      </template>
-    </SanityImage> -->
-
     <img
       :src="$urlFor(gImage).size(size).url()"
       :alt="gImage.alt"
@@ -31,25 +20,6 @@ const props = defineProps({
   logo: Boolean,
   size: Number,
 });
-
-const { size, gImage } = toRefs(props);
-
-// responsive breakpoint size settings
-const sizesSet = computed(() => {
-  if (size.value === "desktop-small")
-    return "xs:320px, sm:600px, md:768px, lg:600px, xl:600px, xxl:600px";
-  if (size.value === "desktop-medium")
-    return "xs:320px, sm:600px, md:700px, lg:700px, xl:700px, xxl:700px";
-  if (size.value === "desktop-large")
-    return "xs:320px, sm:600px, md:768px, lg:1024px, xl:1024px, xxl:1024px";
-});
-
-const cleanUrl = (url) => {
-  const b = runtimeConfig.public.sanity_media;
-  let clean = url.replace(b, "");
-  if (url.endsWith("svg")) clean = `${runtimeConfig.public.imagekit}${clean}`;
-  return clean;
-};
 </script>
 
 
