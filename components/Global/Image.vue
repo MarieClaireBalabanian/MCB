@@ -1,15 +1,21 @@
 <template>
   <div class="global-image">
-    <SanityImage :asset-id="gImage.asset._ref">
+    <!-- <SanityImage :asset-id="gImage.asset._ref">
       <template #default="{ src }">
         <NuxtPicture
           :src="cleanUrl(src)"
           :alt="gImage.alt"
           :sizes="sizesSet"
-          :loading="isEager ? 'eager' : 'lazy'"
+          :loading="load"
         />
       </template>
-    </SanityImage>
+    </SanityImage> -->
+
+    <img
+      :src="$urlFor(gImage).size(size).url()"
+      :alt="gImage.alt"
+      :loading="load"
+  />
   </div>
 </template>
 
@@ -21,19 +27,21 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  isEager: Boolean,
+  load: String,
   logo: Boolean,
+  size: Number,
 });
 
 const { size, gImage } = toRefs(props);
 
 // responsive breakpoint size settings
 const sizesSet = computed(() => {
+  if (size.value === "desktop-small")
+    return "xs:320px, sm:600px, md:768px, lg:600px, xl:600px, xxl:600px";
   if (size.value === "desktop-medium")
-    return "xs:320px, sm:600px, md:768px, lg:768px, xl:800px, xxl:1024px";
+    return "xs:320px, sm:600px, md:700px, lg:700px, xl:700px, xxl:700px";
   if (size.value === "desktop-large")
     return "xs:320px, sm:600px, md:768px, lg:1024px, xl:1024px, xxl:1024px";
-  else return "xs:320px, sm:600px, md:768px, lg:1024px, xl:1440px, xxl:1440px";
 });
 
 const cleanUrl = (url) => {

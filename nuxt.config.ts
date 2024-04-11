@@ -124,4 +124,8 @@ export default defineNuxtConfig({
         xl: 1536,
     },
   },
+
+  plugins: [
+    '~/plugins/sanityImageBuilder'
+  ]
 })

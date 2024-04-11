@@ -2,9 +2,9 @@
   <section ref="blockRef" class="text-white pseudo-after">
     <GlobalImage
       :gImage="block.image.image"
-      size="desktop-medium"
+      :size="700"
       class="background-cover absolute-cover pseudo-after"
-      isEager
+      load="eager"
     />
     <div class="container text-right">
       <h1 class="h1 heading mb-40">

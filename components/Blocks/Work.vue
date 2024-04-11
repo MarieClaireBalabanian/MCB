@@ -23,14 +23,17 @@
               v-if="project.thumbnail?.image"
               :gImage="project.thumbnail.image"
               class="bg background-cover absolute-cover"
-              size="desktop-medium"
+              :size="600"
+              load="lazy"
             />
             <GlobalImage
               logo
               v-if="project.image"
               :gImage="project.image.image"
               class="logo contain"
-              size="desktop-small"
+              load="lazy"
+              :size="600"
+
             />
           </div>
 

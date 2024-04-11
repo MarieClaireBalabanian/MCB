@@ -1,8 +1,9 @@
 <template>
   <section v-if="block.blurbs" class="block-padding">
     <GlobalImage
-      size="desktop-small"
       class="background-cover absolute-cover"
+      load="lazy"
+      :size="1000"
       :gImage="block.Image.image"
     />
 
@@ -39,7 +40,7 @@ const slidesRef = ref([]);
 const blockRef = ref(null);
 
 const initObserver = () => {
-  const options = { threshold: 1 };
+  const options = { threshold: .6 };
   let obs = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -68,7 +69,7 @@ onMounted(() => {
   transform: translate3d(0, 0, 0); // for safari support mix blend mode
 
   .copy {
-    transition: transform .6s ease-out,  opacity .6s ease-in;
+    transition: transform .6s ease,  opacity .9s ease;
     &:nth-child(even) {
       margin-left: auto;
       margin-top: 40px;
@@ -84,12 +85,12 @@ onMounted(() => {
 
     &:not(.showing) {
       opacity: 0;
-      transform: translateY(60px);
+      transform: translate3d(0,60px,0);
 
     }
     &.showing {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0,0,0);
     }
   }
 
