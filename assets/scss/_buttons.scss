@@ -17,7 +17,7 @@ button {
     background: $white;
     color: $black;
     transition:  .25s ease;
-    background-color: $rose;
+    background-color: $redpink;
     color: $white;
     &:hover,
     &:focus {
@@ -27,7 +27,6 @@ button {
 
     &.button-black {
         color: $white;
-        ;
         transform-origin: left center;
     }
 }

@@ -11,10 +11,10 @@ const windowStore = useWindowStore();
 const scroll = () => {
   windowStore.scrollTop = window.scrollY;
 };
-// const resize = () => {
-//   windowStore.windowWidth = window.innerWidth;
-//   windowStore.windowHeight = window.innerHeight;
-// };
+const resize = () => {
+  // windowStore.windowWidth = window.innerWidth;
+  // windowStore.windowHeight = window.innerHeight;
+};
 
 onMounted(() => {
   scroll();

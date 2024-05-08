@@ -1,21 +1,13 @@
 <template>
   <section v-if="block.blurbs" class="block-padding">
-    <GlobalImage
-      class="background-cover absolute-cover"
-      load="lazy"
-      :size="1000"
-      :gImage="block.Image.image"
-    />
-
     <div class="container">
-    <PartialsTitle :title="block.title" color="black" direction="to-right" class="mb-80" />
-
-      <div class="copy-container">
+      <PartialsTitle :title="block.title" class="text-stroke stroke-white mb-20" />
+      <div class="copy-container" ref="slidesRef">
         <div
           class="copy"
           v-for="(blurb, index) in block.blurbs"
           :key="`copy-${index}`"
-          ref="slidesRef"
+      
         >
           <div class="paragraph">
             <SanityContent :blocks="blurb.copy" />
@@ -34,10 +26,8 @@ const props = defineProps({
   required: true
 })
 
-const currentIndex = ref(0);
 const observer = ref(null);
 const slidesRef = ref([]);
-const blockRef = ref(null);
 
 const initObserver = () => {
   const options = { threshold: .6 };
@@ -50,9 +40,7 @@ const initObserver = () => {
     }, options);
   });
 
-  slidesRef.value.forEach((el) => {
-    obs.observe(el);
-  });
+  obs.observe(slidesRef.value);
   observer.value = obs;
 };
 
@@ -65,40 +53,69 @@ onMounted(() => {
 <style lang="scss">
 .block-about {
   position: relative;
-  background: rgba($white, 0.9);
-  transform: translate3d(0, 0, 0); // for safari support mix blend mode
+  background: $black;
+
+  .copy-container {
+    padding: 10px 0 0;
+    position: relative;
+  }
 
   .copy {
-    transition: transform .6s ease,  opacity .9s ease;
-    &:nth-child(even) {
+    width: calc(100% - 20px);
+    padding: 25px 20px;
+    background: $white;
+    &:first-child {
       margin-left: auto;
-      margin-top: 40px;
     }
-
-    @media (min-width: 768px) {
-      max-width: 50rem;
-
-      &:nth-child(even) {
-        margin-top: 60px;
-      }
-    }
-
-    &:not(.showing) {
-      opacity: 0;
-      transform: translate3d(0,60px,0);
-
-    }
-    &.showing {
-      opacity: 1;
-      transform: translate3d(0,0,0);
+    &:last-child {
+      margin-top: 20px;
     }
   }
 
-  .global-image {
-    mix-blend-mode: screen;
-    img {
-      filter: grayscale(100%);
-      object-position: 40% top !important;
+  h3 {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    background: linear-gradient(90deg, $black 50%,$redpink 0);
+
+    .copy-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 30px;
+      &::after {
+        position: absolute;
+        inset: 0 0 0 0;
+        display: block;
+        content: '';
+        transition: .9s ease;
+        background: linear-gradient(90deg, $white 50%,$black 0);
+        opacity: 0;
+        z-index: 1;
+      }
+
+      &.showing {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    .copy {
+      width: calc(50% - 20px);
+      max-width: 37rem;
+      position: relative;
+      z-index: 2;
+      background: unset;
+      transition: transform .6s ease,  opacity .9s ease;
+
+      &:first-child {
+        margin: 0;
+      }
+      &:last-child {
+        color: $white;
+        margin: 0;
+      }
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
-  <section class="block-padding text-white bg-black">
+  <section class="block-padding text-center">
     <div class="container">
-      <div class="header text-center">
-        <PartialsTitle :title="block.title" color="white" direction="to-left" class="mb-80" />
+      <div class="header">
+        <PartialsTitle :title="block.title" class=" text-stroke stroke-black" />
       </div>
-      <PartialsTech :skills="block.skills" animate />
+      <PartialsTech :skills="block.skills" animate class="text-center"/>
     </div>
   </section>
 </template>
@@ -20,12 +20,14 @@ const props = defineProps({
 <style lang="scss">
 .block-skills {
   .tech {
+    padding: 20px 0;
     columns: 2;
     column-gap: 1vw;
   }
   @media (min-width: 768px) {
     .tech {
-      columns: 4;
+      columns: 3;
+      
 
       li {
         break-inside: avoid;

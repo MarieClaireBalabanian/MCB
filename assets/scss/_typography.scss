@@ -7,30 +7,34 @@ body {
 }
 
 .h1 {
-  font-size: clamp(2.5rem, 6vw, 6rem);
-  line-height: 0.73em;
+  font-size: clamp(1.7rem, 6vw, 5rem);
+  line-height: .7em;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-family: $title;
 }
 
 .h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 400;
   line-height: 1em;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: $white;
+  font-family: $title;
 
   @media (min-width: 768px) {
-    font-size: 5.5em;
+    font-size: 4.5em;
   }
 }
 
 .h2-alt {
-  line-height: 0.73em;
+  line-height: 1.2em;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-size: 2.1rem;
+  line-height: .69em;
+  font-size: 2.7rem;
+  font-family: $title;
 
   @media (max-width: 767px) {
     font-size: 1.5rem;
@@ -39,6 +43,7 @@ body {
 
 .h2-large {
   font-size: 1.8rem;
+  font-family: $title;
 
   @media (min-width: 1024px) {
     font-size: 3rem;
@@ -46,9 +51,10 @@ body {
 }
 
 .h3 {
-  font-size: 1.4rem;
+  font-size: 1rem;
   @media (min-width: 1024px) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-family: $title;
   }
 }
 
@@ -66,19 +72,39 @@ body {
   }
 }
 
+.text-stroke {
+  -webkit-text-stroke-width:1px;
+  color: transparent;
+  @media (min-width: 1024px) {
+    -webkit-text-stroke-width:2px;
+  }
+}
+
+.stroke-red {
+  -webkit-text-stroke-color:$redpink;
+}
+.stroke-white {
+  -webkit-text-stroke-color:$white;
+}
+.stroke-teal {
+  -webkit-text-stroke-color:$teal;
+}
+.stroke-black {
+  -webkit-text-stroke-color:$black;
+}
 
 .paragraph {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6em;
 
-  *+p {
+  *:not(h3)+p {
     margin-top: 1.5rem;
   }
 
   h3 {
     @extend .h3;
-    @extend .mb-20;
-    font-weight: 500;
+    margin-bottom: 10px;
+    font-family: $title;
   }
 
   ul {
@@ -91,7 +117,9 @@ body {
       }
     }
   }
-
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
 }
 
 .paragraph-small {
@@ -105,6 +133,14 @@ body {
 
 .text-black {
   color: $black;
+}
+
+.text-teal {
+  color: $teal;
+}
+
+.text-redpink {
+  color: $redpink;
 }
 
 .bold {

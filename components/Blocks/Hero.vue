@@ -1,17 +1,23 @@
 <template>
-  <section ref="blockRef" class="text-white pseudo-after">
+  <section ref="blockRef" class="text-white bg-black">
     <GlobalImage
-      :gImage="block.image.image"
+      :gImage="block.image1.image"
       :size="700"
-      class="background-cover absolute-cover pseudo-after"
       load="eager"
+      :style="{'opacity': 1 - progress}"
+      class="teal"
     />
-    <div class="container text-right">
-      <h1 class="h1 heading mb-40">
-        MC<br />
-        Balabanian
-      </h1>
-      <h2 class="h2-alt heading">Front-end Developer</h2>
+    <GlobalImage
+      aria-hidden="true"
+      :gImage="block.image2.image"
+      :style="{'opacity': progress + .3}"
+      :size="700"
+      load="lazy"
+      class="bw"
+    />
+    <div class="container">
+      <h1 class="h1 heading" v-html="block.title"></h1>
+      <h2 class="h2-alt heading text-redpink text-right">{{ block.subtitle}}</h2>
     </div>
   </section>
 </template>
@@ -21,100 +27,127 @@ const props = defineProps({
   block: Object,
   required: true
 })
+
+const windowStore = useWindowStore();
+
+const boundsTop = ref(Infinity);
+const active = ref(false);
+const blockRef = ref(null);
+const observer = ref(null)
+
+const scrollTop = computed(() => {
+    return windowStore.scrollTop;
+});
+
+watch(scrollTop, (newScrollTop) => {
+    updateProgress();
+});
+
+const progress = computed(() => {
+  let prog = scrollTop.value/boundsTop.value;
+
+  if (prog < 0) {
+    return 0;
+  }
+  if (prog > 1) {
+    return 1;
+  }
+  return prog;
+});
+
+const initObserver = () => {
+    let obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            active.value = entry.isIntersecting;
+        });
+    });
+    obs.observe(blockRef.value);
+    observer.value = obs;
+};
+
+const updateProgress = () => {
+    if (active.value) {
+        let bounds = blockRef.value.getBoundingClientRect();
+        boundsTop.value = bounds.bottom;
+    }
+};
+
+onMounted(() => {
+    initObserver();
+});
 </script>
 
 <style lang="scss">
 
 .block-hero {
-  min-height: 100vh;
-  padding: 80px 0;
-  overflow: hidden;
-  background: linear-gradient(0deg, #000, $green);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-
-  @media (max-width: 767px) {
-    justify-content: flex-end;
-    padding-bottom: 20vh;
-  }
-
-  &::after {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60%;
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(214, 0, 94, 0) 50%
-    );
-    z-index: 4;
-
-    @media (max-width: 767px) {
-      background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(214, 0, 94, 0) 60%
-      );
-    }
-  }
-
-  .global-image {
-    right: unset;
-    width: 50%;
-    mix-blend-mode: lighten;
-    position: absolute;
-
-    &::after {
-      right: 0;
-      width: 30%;
-      height: 100%;
-      background: linear-gradient(
-        270deg,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(214, 0, 94, 0) 70%
-      );
-      z-index: 4;
-    }
-
-    @media (max-width: 767px) {
-      width: 70%;
-
-      &::after {
-        width: 20%;
-      }
-    }
-
-    img {
-      filter: contrast(0.95) brightness(70%);
-      object-position: 75% center !important;
-    }
-  }
-
-  .container {
     position: relative;
-    z-index: 5;
+    overflow: hidden;
+  .container {
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .global-image {
+    position: absolute;
+    z-index: 1;
+    &.teal {
+      right: 0;
+      top: 0;
+      width: 40%;
+    }
+    &.bw {
+      left: 0;
+      bottom: 0;
+      width: 35%;
+      transform: translateY(38%);
+    }
   }
 
   .heading {
+    position: relative;
+    width: 100%;
+    z-index: 2;
     opacity: 0;
     filter: blur(5px);
+    span {
+      display: block;
+    }
   }
 
   .h1 {
-    margin-right: -0.1em;
     animation: fadeIn 1.4s forwards 0.4s ease-in;
+    span {
+      &:last-child {
+        text-align: right;
+        @extend .text-stroke;
+        @extend .stroke-white;
+      }
+    }
   }
 
   .h2-alt {
-    margin-top: 7vh;
-    line-height: 1.2em;
+    margin-top: 40px;
+    align-self: flex-end;
     animation: fadeIn 1.4s forwards 0.9s ease-in;
+  }
 
-    @media (max-width: 767px) {
-      margin-top: 4vh;
+  @media (max-width: 767px) {
+    .global-image {
+      &.teal {
+        width: 80%;
+      }
+      &.bw {
+        width: 70%;
+      }
+    }
+
+    .h2-alt {
+      align-self: unset;
     }
   }
 

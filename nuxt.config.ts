@@ -82,12 +82,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-
     public: {
       sanity_media: process.env.SANITY_MEDIA,
       imagekit: process.env.IMAGEKIT,
-      postmark: process.env.POSTMARK,
-      email: process.env.EMAIL,
+      sendgrid_api_key: process.env.SENDGRID_API_KEY,
+      sendgrid_from: process.env.SENDGRID_FROM,
+      sendgrid_to: process.env.SENDGRID_TO,
     },
   },
 

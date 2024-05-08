@@ -12,7 +12,27 @@ $fontBase: '@/assets/fonts';
   
 }
 
+@font-face {
+  font-family: 'Horizon';
+  src: url(#{$fontBase}/horizon.woff) format('woff'),
+  url(#{$fontBase}/horizon.otf) format('otf'); 
+  font-display: swap; 
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Horizon';
+  src: url(#{$fontBase}/horizon_outlined.otf) format('otf'); 
+  font-display: swap; 
+  font-style: normal;
+  font-weight: 400;
+}
+
+
 $sans: 'Helvetica', 'sans-serif';
 
 $major-mono:  'Major Mono Display', $sans;
 $body: 'Outfit', $sans;
+
+$title: 'Horizon', $body;

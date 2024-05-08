@@ -103,7 +103,7 @@ onMounted(() => {
 <style lang="scss">
 .form-field {
   position: relative;
-  margin-bottom: 1.9rem;
+  margin-bottom: 20px;
 
   &.error {
     input,
@@ -114,16 +114,16 @@ onMounted(() => {
 
   input,
   textarea {
-    background: white;
+    background: black;
     padding: 15px;
     width: 100%;
     border-radius: 0;
-    color: $black;
+    color: $white;
   }
 
   textarea {
     resize: none;
-    min-height: 200px;
+    min-height: 100px;
   }
 
   &.has-value {
@@ -146,7 +146,6 @@ onMounted(() => {
       margin-bottom: 10px;
     }
     &.absolute {
-      background: white;
       transition: 0.25s ease;
       pointer-events: none;
       touch-action: none;
@@ -155,7 +154,7 @@ onMounted(() => {
       transform: translateY(-50%);
       left: 15px;
       z-index: 2;
-      color: $black;
+      color: $white;
     }
   }
 

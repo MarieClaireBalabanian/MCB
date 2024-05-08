@@ -21,6 +21,7 @@
     "@nuxtjs/sanity": "^1.8.3",
     "@pinia/nuxt": "^0.5.1",
     "@sanity/image-url": "^1.0.2",
+    "@sendgrid/mail": "^8.1.1",
     "focus-options-polyfill": "^1.6.0",
     "pinia": "^2.1.7",
     "postmark": "^4.0.2",

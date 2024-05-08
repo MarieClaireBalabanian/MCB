@@ -123,8 +123,8 @@
     }
 
     .logo {
-      font-family: $major-mono;
-      font-size: 26px;
+      font-family: $title;
+      font-size: 23px;
       transition: 0.25s ease;
       position: relative;
       z-index: 999;

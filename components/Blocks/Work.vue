@@ -1,9 +1,8 @@
 <template>
-  <section class="bg-black block-padding bottom-line">
+  <section class="bg-black block-padding">
     <div class="container">
-      <PartialsTitle :title="block.title" color="white" direction="to-right" class="mb-40"/>
+      <PartialsTitle :title="block.title" class="text-stroke stroke-white mb-20"/>
       <ul>
-
         <!-- using mouseover and mouseleave allows for tapping on mobile to reveal content without navigation.
         :hover alone will not. -->
         <li
@@ -68,7 +67,8 @@ const query = groq`*[_type == "project"] | order(order) {
           thumbnail,
           slug,
           image,
-          subtitle
+          subtitle,
+          title
       }`;
 const sanity = useSanity();
 const { data } = await useAsyncData("projects", () => sanity.fetch(query));
@@ -86,6 +86,10 @@ const hovering = ref(null);
 
 <style lang="scss">
 .block-work {
+
+  &.block-padding {
+    padding-top: 100px;
+  }
   .container {
     position: relative;
     z-index: 4;
@@ -152,6 +156,9 @@ const hovering = ref(null);
   }
 
   @media (min-width: 768px) {
+    &.block-padding {
+      padding-top: 200px;
+    }
     ul {
       columns: 2;
       column-gap: 10px;

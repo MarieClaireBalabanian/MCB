@@ -1,8 +1,8 @@
 <template>
-  <section class="block-padding bottom-line bg-black text-white">
-    <div class="container">
-      <div class="half copy mb-20">
-        <PartialsTitle :title="block.title" color="white" direction="to-left" class="mb-40" />
+  <section class="block-padding">
+    <div class="container narrow">
+      <div class="half copy mb-40">
+        <PartialsTitle :title="block.title" class="mb-20 stroke-black text-stroke" />
         <div class="paragraph">
           <SanityContent :blocks="block.contact_copy" />
         </div>
@@ -176,33 +176,28 @@ const submit = () => {
   }
 };
 
-const runtimeConfig = useRuntimeConfig();
 async function send() {
   const data = {
-    From: "hello@mcbalabanian.io",
-    To: "hello@mcbalabanian.io",
-    HtmlBody: `
-        <h2>${formInputs.value.name.val}</h2>
-        <h3>${formInputs.value.email.val}</h3>
-        <p>${formInputs.value.message.val}</p>
-    `,
-  };
-
+    name: formInputs.value.name.val,
+    email: formInputs.value.email.val,
+    message: formInputs.value.message.val,
+  }
   await $fetch("/api/contact", {
     method: "POST",
     body: JSON.stringify(data),
   })
-    .then(() => {})
-    .catch((error) => {
-      console.error("addEmailSignup error: ", error);
-    });
+  .then(() => {})
+  .catch((error) => {
+    console.error("contact form error: ", error);
+  });
 }
 </script>
 
 <style lang="scss">
 .block-contact {
-  .fields {
-    grid-gap: 15px;
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .form-errors {
@@ -223,31 +218,19 @@ async function send() {
   }
 
   .copy {
-    padding-top: 2rem;
     .paragraph {
       width: 90%;
     }
   }
 
   @media (min-width: 768px) {
-    .container {
-      display: flex;
-      justify-content: space-between;
-      .half {
-        width: calc(50% - 40px);
-
-        &.copy {
-          overflow: hidden;
-        }
-      }
-    }
     .fields {
       max-width: 800px;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       > .form-field:not(:last-child) {
-        width: calc(50% - 1rem);
+        width: calc(50% - 10px);
       }
       > .form-field:last-child {
         width: 100%;
