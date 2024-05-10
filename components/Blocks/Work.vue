@@ -1,7 +1,7 @@
 <template>
   <section class="bg-black block-padding">
     <div class="container">
-      <PartialsTitle :title="block.title" class="text-stroke stroke-white mb-20"/>
+      <PartialsTitle :title="block.title" class="text-stroke stroke-teal mb-20"/>
       <ul>
         <!-- using mouseover and mouseleave allows for tapping on mobile to reveal content without navigation.
         :hover alone will not. -->
@@ -86,6 +86,7 @@ const hovering = ref(null);
 
 <style lang="scss">
 .block-work {
+  background-image: url('/img/tron.png') center/cover no-repeat;
 
   &.block-padding {
     padding-top: 100px;
@@ -106,8 +107,10 @@ const hovering = ref(null);
 
       .background-cover img {
         transition: transform 0.8s ease 0.4s, opacity 0.8s ease 0.5s;
-        filter: sepia(40%) brightness(45%);
+        filter: sepia(25%) brightness(30%) hue-rotate(-10deg);
         transform-origin: center;
+        mix-blend-mode: multiply;
+
       }
 
       .logo {

@@ -77,7 +77,7 @@ onMounted(() => {
   }
 
   @media (min-width: 768px) {
-    background: linear-gradient(90deg, $black 50%,$redpink 0);
+    background: linear-gradient(90deg, $black 50%,$teal 0);
 
     .copy-container {
       display: flex;
@@ -100,7 +100,6 @@ onMounted(() => {
         }
       }
     }
-
     .copy {
       width: calc(50% - 20px);
       max-width: 37rem;

@@ -1,8 +1,8 @@
 <template>
   <section class="block-padding">
     <div class="container narrow">
-      <div class="half copy mb-40">
-        <PartialsTitle :title="block.title" class="mb-20 stroke-black text-stroke" />
+      <div class="half copy mb-40 text-center">
+        <PartialsTitle :title="block.title" class="mb-20 text-redpink" />
         <div class="paragraph">
           <SanityContent :blocks="block.contact_copy" />
         </div>

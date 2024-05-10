@@ -3,8 +3,8 @@
     <div class="container">
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav class="items-container" @keyup.esc="closeNav('esc')" aria-label="Main Navigation">
-          <NuxtLink :to="'/'" class="logo mright-auto" @click.prevent="closeNav">
-            <span>MCB</span>
+          <NuxtLink :to="'/'" class="logo" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
+            <span>M</span><span class="">C</span><span>B</span>
           </NuxtLink>
 
           <div class="button-wrapper">
@@ -27,7 +27,7 @@
               <div class="inner-menu" tabindex="-1" id="inner-menu" aria-label="Expanded Navigation">
                 <ul class="items">
                   <li v-for="(item, index) in menu" :key="`nav-${index}`">
-                    <NuxtLink class="h2-alt" @click.prevent="closeNav" :to="item.slug" :tabindex="open ? 0 : -1">
+                    <NuxtLink class="h2-alt text-redpink" @click.prevent="closeNav" :to="item.slug" :tabindex="open ? 0 : -1">
                       {{ item.title }}
                     </NuxtLink>
                   </li>
@@ -48,7 +48,7 @@
 
   const windowStore = useWindowStore();
   const showBg = computed(() => {
-    return windowStore.scrollTop > 20;
+    return windowStore.scrollTop > 80;
   });
 
   const menu = [
@@ -94,28 +94,10 @@
     width: 100vw;
     z-index: 999;
     transition: background .4s ease, color .4s ease;
-    color: $white;
 
     &.bg {
-      background: white;
-      color: $black;
-      box-shadow: 0 1px 5px rgba($black, .5);
-
-      .button-wrapper {
-        .bar {
-          stroke: $black;
-        }
-      }
-
-      .logo {
-        transition: 0.2s ease !important;
-
-        &:hover,
-        &:focus {
-          color: $green;
-          border-color: $green;
-        }
-      }
+      background: $black;
+      // border-bottom: 1px solid rgba($white, .1);
     }
 
     >.container {
@@ -124,22 +106,27 @@
 
     .logo {
       font-family: $title;
-      font-size: 23px;
-      transition: 0.25s ease;
+      font-size: 18px;
       position: relative;
       z-index: 999;
+      color: $teal;
       border-bottom: 1px solid transparent;
 
+      span {
+
+        &:nth-child(2) {
+          font-size:24px;
+        }
+      }
       &:hover,
       &:focus {
-        border-color: $white;
+        border-color: $teal;
       }
     }
 
     .button-wrapper {
       height: 22px;
       width: 22px;
-      margin-top: 5px;
     }
 
     .hamburger {
@@ -156,7 +143,7 @@
 
       .bar {
         transition: 0.25s ease 0.2s;
-        stroke: $white;
+        stroke: $teal;
       }
     }
 
@@ -186,8 +173,8 @@
       -webkit-overflow-scrolling: touch;
       z-index: 9999;
       display: flex;
+      padding-top: 11px;
       justify-content: space-between;
-      padding-top: 7px;
       pointer-events: auto;
     }
 
@@ -228,13 +215,9 @@
       }
 
       li {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         letter-spacing: 0.1rem;
         margin-bottom: 2em;
-
-        @media (max-width: 767px) {
-          font-size: 1.3rem;
-        }
 
         a {
           border-bottom: 2px solid transparent;
@@ -244,28 +227,15 @@
 
           &:hover,
           &:focus {
-            border-color: $white;
+            border-color: $redpink;
           }
         }
       }
     }
 
     &.open {
-      .logo,
-      &.bg .logo {
-        color: $white;
-
-        &:hover,
-        &:focus {
-          color: $white;
-          border-color: $white;
-        }
-      }
-
       .button-wrapper {
         .bar {
-          stroke: $white;
-
           &.bar-1 {
             transform: translate(4px, 1px) rotate(45deg);
           }

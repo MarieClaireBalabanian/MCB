@@ -75,27 +75,23 @@ onMounted(() => {
   }
 
   &.animate {
+    text-align: left;
     li {
       transition: opacity 0.8s ease-out;
       opacity: 0;
       font-family: $title;
       font-size: .8rem;
-      padding: .9em .2em;
-      hyphens: auto;
-
-        span {
-          display: inline-block;
-          padding: 2px;
-          background-image: linear-gradient(to bottom, $black 0%, $black 100%);
-          background-repeat: no-repeat;
-          background-size: 50% 1px;
-          background-position: 0 100%;
-          word-break:break-word;
-          hyphens: auto;
-        }
+      padding: 1.1em .2em;
+      span {
+        display: inline-block;
       }
+    }
 
     @media (min-width: 768px) {
+      li {
+        font-size: 1rem;
+      }
+
       @for $i from 1 to 23 {
         .li-#{$i} {
           transition-delay: $i * 0.1s;

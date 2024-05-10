@@ -1,16 +1,16 @@
 <template>
-  <section ref="blockRef" class="text-white bg-black">
+  <section ref="blockRef" class="text-white">
     <GlobalImage
       :gImage="block.image1.image"
       :size="700"
       load="eager"
-      :style="{'opacity': 1 - progress}"
+      :style="{'opacity': .8 - progress}"
       class="teal"
     />
     <GlobalImage
       aria-hidden="true"
       :gImage="block.image2.image"
-      :style="{'opacity': progress + .3}"
+      :style="{'opacity': progress  + .3}"
       :size="700"
       load="lazy"
       class="bw"
@@ -82,6 +82,11 @@ onMounted(() => {
 .block-hero {
     position: relative;
     overflow: hidden;
+    background-color: $black;
+  // background-image: url('/img/tron21.png') ;
+  // background-position: bottom center;
+  // background-repeat: no-repeat;
+  // background-size: 100% auto;
   .container {
     min-height: 100vh;
     padding-top: 80px;

@@ -43,14 +43,12 @@ onMounted(() => {
 <style lang="scss">
 .section-title {
         opacity: 0;
-        transform: scale(.7);
-        transition: .8s transform, .8s opacity;
+        transform: scaleY(.2);
+        transition: .9s transform ease, .8s opacity;
         transform-origin: left center;
-
-        
         &.showing {
             opacity: 1;
-            transform: scale(1);
+            transform: scaleY(1);
         }
 }
 
