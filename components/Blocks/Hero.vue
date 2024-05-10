@@ -83,7 +83,7 @@ onMounted(() => {
     position: relative;
     overflow: hidden;
     background-color: $black;
-  // background-image: url('/img/tron21.png') ;
+  // background-image: url('/img/tron2.png') ;
   // background-position: bottom center;
   // background-repeat: no-repeat;
   // background-size: 100% auto;
@@ -104,6 +104,9 @@ onMounted(() => {
       right: 0;
       top: 0;
       width: 40%;
+      background: $teal;
+      mix-blend-mode: difference;
+      filter:  brightness(35%) ;
     }
     &.bw {
       left: 0;
