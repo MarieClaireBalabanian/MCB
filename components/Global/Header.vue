@@ -4,7 +4,7 @@
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav class="items-container" @keyup.esc="closeNav('esc')" aria-label="Main Navigation">
           <NuxtLink :to="'/'" class="logo" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
-            <span>M</span><span class="">C</span><span>B</span>
+            <span>M</span><span class="">C</span>
           </NuxtLink>
 
           <div class="button-wrapper">
@@ -97,7 +97,6 @@
 
     &.bg {
       background: $black;
-      // border-bottom: 1px solid rgba($white, .1);
     }
 
     >.container {
@@ -106,17 +105,13 @@
 
     .logo {
       font-family: $title;
-      font-size: 18px;
       position: relative;
       z-index: 999;
       color: $teal;
       border-bottom: 1px solid transparent;
 
       span {
-
-        &:nth-child(2) {
-          font-size:24px;
-        }
+        font-size:20px;
       }
       &:hover,
       &:focus {
@@ -211,7 +206,7 @@
       }
 
       ul {
-        padding: 90px 0 90px 4.5vw;
+        padding: 90px 0;
       }
 
       li {

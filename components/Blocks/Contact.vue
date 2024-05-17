@@ -2,7 +2,7 @@
   <section class="block-padding">
     <div class="container narrow">
       <div class="half copy mb-40 text-center">
-        <PartialsTitle :title="block.title" class="mb-20 text-redpink" />
+        <PartialsTitle :title="block.title" class="mb-20" />
         <div class="paragraph">
           <SanityContent :blocks="block.contact_copy" />
         </div>

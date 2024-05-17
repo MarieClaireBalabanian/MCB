@@ -44,6 +44,10 @@ const initObserver = () => {
 onMounted(() => {
   if (process.client && animate.value) initObserver();
 });
+
+onUnmounted(() =>{
+  if (observer.value) observer.value.disconnect();
+})
 </script>
 
 
@@ -61,7 +65,7 @@ onMounted(() => {
     li {
       margin: 0.5em 1em 0.5em 0;
       border-radius: 0.2em;
-      background: $white;
+      background: $teal;
       color: $black;
       letter-spacing: 0.01em;
       font-size: 0.9rem;
@@ -75,23 +79,25 @@ onMounted(() => {
   }
 
   &.animate {
-    text-align: left;
+
     li {
       transition: opacity 0.8s ease-out;
       opacity: 0;
+      color: $white;
       font-family: $title;
-      font-size: .8rem;
-      padding: 1.1em .2em;
+      font-size:  clamp(1.2rem, 5vw, 1.8rem);
+      padding: .4em .8em;
+      min-height: 0.00001vw; // safari clamp resize
+      letter-spacing: .1em;
       span {
         display: inline-block;
+      }
+      &:nth-child(even) {
+        color: $redpink;
       }
     }
 
     @media (min-width: 768px) {
-      li {
-        font-size: 1rem;
-      }
-
       @for $i from 1 to 23 {
         .li-#{$i} {
           transition-delay: $i * 0.1s;

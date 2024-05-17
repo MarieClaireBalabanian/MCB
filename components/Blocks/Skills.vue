@@ -1,9 +1,6 @@
 <template>
-  <section class="block-padding text-center">
+  <section class="block-padding text-center bottom-line">
     <div class="container">
-      <div class="header">
-        <!-- <PartialsTitle :title="block.title" class=" text-redpink" /> -->
-      </div>
       <PartialsTech :skills="block.skills" animate class=""/>
     </div>
   </section>
@@ -20,17 +17,9 @@ const props = defineProps({
 <style lang="scss">
 .block-skills {
   .tech {
-    columns: 2;
-    column-gap: 1vw;
-  }
-  @media (min-width: 768px) {
-    .tech {
-      columns: 4;
-    
-      li {
-        break-inside: avoid;
-      }
-    }
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
   }
 }
 </style>

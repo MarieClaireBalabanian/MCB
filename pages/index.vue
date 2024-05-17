@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-      <article class="page">
+      <article class="page bg-black">
         <main id="main">
           <template v-if="pageData">
             <GlobalStream v-if="pageData?.pageBuilder" :sections="pageData.pageBuilder" />
@@ -15,6 +15,6 @@
     const pageData = ref(null)
     const query = groq`*[_type == "component_page" && slug.current == "${home}"]`;
     const { data } = await useSanityQuery(query, { topic: 'page' })
-    pageData.value = JSON.parse(JSON.stringify(data.value))[0]
+    pageData.value = JSON.parse(JSON.stringify(data.value))[0];
   </script>
   

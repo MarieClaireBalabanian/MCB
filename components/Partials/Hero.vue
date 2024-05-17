@@ -1,9 +1,9 @@
 <template>
   <section class="project-header text-white bg-black">
     <div class="container">
-      <h2 class="h2-large mb-40" id="modal-title">
+      <h1 class="h2-large mb-40" id="modal-title">
         {{ project.title }}
-      </h2>
+      </h1>
       <PartialsTech :skills="project.tech" class="black" />
     </div>
   </section>

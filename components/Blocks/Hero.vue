@@ -9,8 +9,8 @@
     />
     <GlobalImage
       aria-hidden="true"
-      :gImage="block.image2.image"
-      :style="{'opacity': progress  + .3}"
+      :gImage="block.image1.image"
+      :style="{'opacity': progress + .1}"
       :size="700"
       load="lazy"
       class="bw"
@@ -28,32 +28,39 @@ const props = defineProps({
   required: true
 })
 
+// Scroll Top
 const windowStore = useWindowStore();
-
-const boundsTop = ref(Infinity);
-const active = ref(false);
-const blockRef = ref(null);
-const observer = ref(null)
-
 const scrollTop = computed(() => {
     return windowStore.scrollTop;
 });
 
-watch(scrollTop, (newScrollTop) => {
-    updateProgress();
-});
+
+// Track Progress
+const boundsTop = ref(Infinity);
 
 const progress = computed(() => {
   let prog = scrollTop.value/boundsTop.value;
-
-  if (prog < 0) {
-    return 0;
-  }
-  if (prog > 1) {
-    return 1;
-  }
+  if (prog < 0) return 0;
+  if (prog > 1) return 1;
   return prog;
 });
+
+const updateProgress = () => {
+    if (active.value) {
+        let bounds = blockRef.value.getBoundingClientRect();
+        boundsTop.value = bounds.bottom;
+    }
+};
+
+watch(scrollTop, (newScrollTop) => {
+  updateProgress();
+});
+
+
+// Intersection Observer
+const observer = ref(null)
+const blockRef = ref(null);
+const active = ref(false);
 
 const initObserver = () => {
     let obs = new IntersectionObserver((entries) => {
@@ -65,16 +72,13 @@ const initObserver = () => {
     observer.value = obs;
 };
 
-const updateProgress = () => {
-    if (active.value) {
-        let bounds = blockRef.value.getBoundingClientRect();
-        boundsTop.value = bounds.bottom;
-    }
-};
-
 onMounted(() => {
-    initObserver();
+    if (process.client) initObserver();
 });
+
+onUnmounted(() =>{
+  if (observer.value) observer.value.disconnect();
+})
 </script>
 
 <style lang="scss">
@@ -83,10 +87,7 @@ onMounted(() => {
     position: relative;
     overflow: hidden;
     background-color: $black;
-  // background-image: url('/img/tron2.png') ;
-  // background-position: bottom center;
-  // background-repeat: no-repeat;
-  // background-size: 100% auto;
+
   .container {
     min-height: 100vh;
     padding-top: 80px;
@@ -104,15 +105,14 @@ onMounted(() => {
       right: 0;
       top: 0;
       width: 40%;
-      background: $teal;
-      mix-blend-mode: difference;
-      filter:  brightness(35%) ;
+      filter:  brightness(30%) hue-rotate(30deg);
     }
     &.bw {
       left: 0;
       bottom: 0;
       width: 35%;
       transform: translateY(38%);
+      filter:  brightness(70%) hue-rotate(40deg);
     }
   }
 

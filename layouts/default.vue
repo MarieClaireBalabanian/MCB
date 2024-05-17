@@ -7,4 +7,21 @@
     <slot />
     <GlobalFooter />
   </div>
-</template> 
+</template>
+
+<script setup>
+import { useWindowStore } from "@/stores/window";
+const windowStore = useWindowStore();
+const scroll = () => {
+  windowStore.scrollTop = window.scrollY;
+};
+
+onMounted(() => {
+  scroll();
+  window.addEventListener("scroll", scroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", scroll);
+})
+</script>

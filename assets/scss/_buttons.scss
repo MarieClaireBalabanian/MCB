@@ -3,14 +3,12 @@ button {
     border: 0;
     background: transparent;
     display: inline-block;
-    padding: 0;
 }
 
 .button {
     font-size: .9rem;
     font-weight: 600;
     padding: .6rem .8rem .5rem;
-    display: inline-block;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: .05em;
@@ -23,11 +21,6 @@ button {
     &:focus {
         text-decoration: underline;
         border-radius: .5em;
-    }
-
-    &.button-black {
-        color: $white;
-        transform-origin: left center;
     }
 }
 

@@ -1,5 +1,5 @@
-<template>
-  <h2 class="section-title h2" ref="titleRef">
+<template> 
+  <h2 class="section-title h2 text-teal" ref="titleRef">
     {{ title }}
   </h2>
 </template>
@@ -17,6 +17,7 @@ const props = defineProps({
 });
 
 const titleRef = ref(null)
+const observer = ref(null)
 
 const initObserver = () => {
   const options = { threshold: .8}
@@ -33,23 +34,23 @@ const initObserver = () => {
 };
 
 onMounted(() => {
-  if (process.client) {
-        initObserver();
-    }
+  if (process.client) initObserver();
 });
-</script>
 
+onUnmounted(() =>{
+  if (observer.value) observer.value.disconnect();
+})
+</script>
 
 <style lang="scss">
 .section-title {
-        opacity: 0;
-        transform: scaleY(.2);
-        transition: .9s transform ease, .8s opacity;
-        transform-origin: left center;
-        &.showing {
-            opacity: 1;
-            transform: scaleY(1);
-        }
+  opacity: 0;
+  transform: scaleY(.2);
+  transition: .9s transform ease, .8s opacity;
+  transform-origin: left center;
+  &.showing {
+      opacity: 1;
+      transform: scaleY(1);
+  }
 }
-
 </style>

@@ -1,4 +1,5 @@
 $max-container: 1400px;
+
 .container {
   padding: 0 20px;
   width: 100%;
@@ -9,14 +10,6 @@ $max-container: 1400px;
   }
 }
 
-
-// container gutter
-$gutter: 20px;
-@media (min-width: 768px) {
-  $gutter: 40px;
-}
-
-
 .block-padding {
    padding-top: 50px; 
    padding-bottom: 50px;
@@ -24,19 +17,5 @@ $gutter: 20px;
   @media (min-width: 768px) {
     padding-top: 140px; 
     padding-bottom: 140px;
-  }
-}
-
-.bottom-line {
-  position: relative;
-  &::before {
-    position: absolute;
-    content: "";
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
-    height: 1px;
-    background: $white;
   }
 }

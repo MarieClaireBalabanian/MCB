@@ -19,13 +19,13 @@ body {
   font-size: 2rem;
   font-weight: 400;
   line-height: 1em;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: $white;
   font-family: $title;
 
   @media (min-width: 768px) {
-    font-size: 4.5em;
+    font-size: 3.5em;
   }
 }
 
@@ -59,26 +59,10 @@ body {
   }
 }
 
-.h4 {
-  font-size: 1.4rem;
-  @media (min-width: 1024px) {
-    font-size: 1.6rem;
-  }
-}
-
-.h5 {
-  font-size: 1.2rem;
-  @media (min-width: 1024px) {
-    font-size: 1.2rem;
-  }
-}
-
 .text-stroke {
-  -webkit-text-stroke-width:1px;
+  -webkit-text-stroke-width: clamp(1px, .035em, 2px);
+  min-height: 0.00000001vw; // Safari hack
   color: transparent;
-  @media (min-width: 1024px) {
-    -webkit-text-stroke-width:2px;
-  }
 }
 
 .stroke-red {
@@ -97,6 +81,17 @@ body {
 .paragraph {
   font-size: 1rem;
   line-height: 1.6em;
+
+  &.large {
+    @media (min-width: 768px) {
+      font-size: 1.2rem;
+      line-height: 1.8em;
+    }
+    
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
 
   *:not(h3)+p {
     margin-top: 1.5rem;
@@ -142,10 +137,6 @@ body {
 
 .text-redpink {
   color: $redpink;
-}
-
-.bold {
-  font-weight: 700;
 }
 
 a,

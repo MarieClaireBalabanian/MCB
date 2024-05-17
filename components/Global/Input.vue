@@ -114,11 +114,11 @@ onMounted(() => {
 
   input,
   textarea {
-    background: black;
+    background: $white;
     padding: 15px;
     width: 100%;
     border-radius: 0;
-    color: $white;
+    color: $black;
   }
 
   textarea {
@@ -146,6 +146,7 @@ onMounted(() => {
       margin-bottom: 10px;
     }
     &.absolute {
+      color: $black;
       transition: 0.25s ease;
       pointer-events: none;
       touch-action: none;
@@ -154,7 +155,6 @@ onMounted(() => {
       transform: translateY(-50%);
       left: 15px;
       z-index: 2;
-      color: $white;
     }
   }
 

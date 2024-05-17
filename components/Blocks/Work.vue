@@ -1,7 +1,7 @@
 <template>
-  <section class="bg-black block-padding">
+  <section class="block-padding bottom-line">
     <div class="container">
-      <PartialsTitle :title="block.title" class="text-stroke stroke-teal mb-20"/>
+      <PartialsTitle :title="block.title" class="mb-20"/>
       <ul>
         <!-- using mouseover and mouseleave allows for tapping on mobile to reveal content without navigation.
         :hover alone will not. -->
