@@ -270,10 +270,10 @@ const handleModal = (val) => {
       }
       &.active {
         &::before {
-          background: $green;
+          background: $teal;
         }
         span {
-          color: $green;
+          color: $teal;
         }
       }
     }
