@@ -112,6 +112,7 @@
 
       span {
         font-size:20px;
+        background: $black;
       }
       &:hover,
       &:focus {

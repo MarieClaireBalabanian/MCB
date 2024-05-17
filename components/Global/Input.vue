@@ -147,6 +147,7 @@ onMounted(() => {
     }
     &.absolute {
       color: $black;
+      background: $white;
       transition: 0.25s ease;
       pointer-events: none;
       touch-action: none;
