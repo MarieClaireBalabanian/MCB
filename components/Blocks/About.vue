@@ -1,23 +1,5 @@
 <template>
   <section v-if="block.blurbs" class="block-padding bottom-line" ref="blockRef">
-    <div class="image-carousel">
-      <div class="image-container">
-        <transition-group name="fade">
-          <GlobalImage v-for="(blurb, index) in block.blurbs"
-              :key="`bg-${index}`"
-              :gImage="blurb.image.image"
-              :size="1200"
-              load="lazy"
-              class="absolute-cover background-cover"
-              :class="{
-                'zone': index === 0, 
-                'trees': index === 1 
-                }"
-              v-show="index === 0 && progress < .7 || index === 1 && progress >= .7"
-            />
-        </transition-group>
-        </div>
-    </div>
   
     <div class="container text-white">
       <PartialsTitle :title="block.title" class="mb-20" />
@@ -114,37 +96,6 @@ onUnmounted(() => {
 
 <style lang="scss">
 .block-about {
-  min-height: 100vh;
-  margin-top: 50px;
-  .image-carousel {
-		position: absolute;
-		inset: 0;
-	}
-
-  .trees {
-    filter: invert(100%) hue-rotate(80deg) brightness(50%);
-  }
-
-  .zone {
-    filter: brightness(80%) hue-rotate(170deg);
-  }
-	
-	.image-container {
-		position: sticky;
-		top: 0;
-    left: 0;
-		width: 100%;
-		min-height: 100vh;
-
-    &::after {
-      content: '';
-      display: inline-block;
-      position: absolute;
-      inset: 0 0 0 0;
-      z-index:0;
-      background-image:radial-gradient(circle closest-side, transparent, $black);
-    }
-	}
 
   .fade-enter, .fade-leave-to {
     opacity: 0;
@@ -163,28 +114,22 @@ onUnmounted(() => {
   }
 
   .copy {
-    min-height: 50vh;
 
     .paragraph {
       max-width: 52rem;
     }
     
     &:first-child {
-      min-height: 100vh;
-      padding: 70vh 0 30vh;
+
     }
 
     &:last-child {
-      padding: 70vh 0 30vh;
       .paragraph {
         margin-left: auto;
       }
     }
   }
 
-  @media (min-width: 768px) {
-    margin-top: 140px; 
-  }
 
   @keyframes grow {
     0% {

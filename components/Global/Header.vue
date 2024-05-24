@@ -3,8 +3,8 @@
     <div class="container">
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav class="items-container" @keyup.esc="closeNav('esc')" aria-label="Main Navigation">
-          <NuxtLink :to="'/'" class="logo" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
-            <span>M</span><span class="">C</span>
+          <NuxtLink :to="'/'" class="logo text-stroke stroke-teal" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
+            MC
           </NuxtLink>
 
           <div class="button-wrapper">
@@ -107,17 +107,9 @@
       font-family: $title;
       position: relative;
       z-index: 999;
-      color: $teal;
+      font-size: 20px;
       border-bottom: 1px solid transparent;
-
-      span {
-        font-size:20px;
-        background: $black;
-      }
-      &:hover,
-      &:focus {
-        border-color: $teal;
-      }
+      text-shadow: 5px 1px;
     }
 
     .button-wrapper {

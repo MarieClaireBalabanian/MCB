@@ -27,31 +27,31 @@ export default defineNuxtConfig({
         {
           rel: 'shortcut icon',
           type: 'image/x-icon',
-          href: '/img/favicons/favicon.ico',
+          href: '/img/favicon/favicon.ico',
         },
         {
           rel: 'shortcut icon',
           type: 'image/png',
           sizes: '192x192',
-          href: '/img/favicons/android-chrome-192x192.png',
+          href: '/img/favicon/android-chrome-192x192.png',
         },
         {
           rel: 'icon',
           type: 'image/png',
           sizes: '512x512',
-          href: '/img/favicons/android-chrome-512x512.png',
+          href: '/img/favicon/android-chrome-512x512.png',
         },
         {
           rel: 'icon',
           type: 'image/png',
           sizes: '16x16',
-          href: '/img/favicons/favicon-16x16.png',
+          href: '/img/favicon/favicon-16x16.png',
         },
         {
           rel: 'icon',
           type: 'image/png',
           sizes: '32x32',
-          href: '/img/favicons/favicon-32x32.png',
+          href: '/img/favicon/favicon-32x32.png',
         },
         {
           rel: 'preconnect',

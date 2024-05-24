@@ -112,7 +112,7 @@ onUnmounted(() =>{
       bottom: 0;
       width: 35%;
       transform: translateY(38%);
-      filter:  brightness(70%) hue-rotate(40deg);
+      filter:  grayscale(40%) brightness(70%) hue-rotate(40deg);
     }
   }
 
