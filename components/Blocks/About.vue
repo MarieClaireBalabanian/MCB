@@ -8,7 +8,7 @@
     />
 
     <div class="container">
-    <PartialsTitle :title="block.title" class="text-black mb-80" />
+    <PartialsTitle :title="block.title" class="text-black mb-120" />
       <div class="copy-container">
         <div
           class="copy"
@@ -74,12 +74,11 @@ onMounted(() => {
       margin-left: auto;
       margin-top: 40px;
     }
-
     @media (min-width: 768px) {
-      max-width: 50rem;
+      max-width: 42rem;
 
       &:nth-child(even) {
-        margin-top: 60px;
+        margin-top: 80px;
       }
     }
 

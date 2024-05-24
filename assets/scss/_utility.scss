@@ -47,9 +47,16 @@ $header-height: 45px;
 
 .mb-80 {
     margin-bottom: 40px;
-
     @media (min-width: 768px) {
         margin-bottom: 80px;
+    }
+}
+
+.mb-120 {
+    margin-bottom: 60px;
+
+    @media (min-width: 768px) {
+        margin-bottom: 120px;
     }
 }
 

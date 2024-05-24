@@ -95,15 +95,15 @@ const props = defineProps({
     z-index: 5;
   }
 
+  .heading {
+    opacity: 0;
+    filter: blur(15px);
+  }
   .h1 {
-    animation: fadeIn 1.4s forwards 0.4s ease-in;
+    animation: fadeIn 1s forwards 0.4s ease-in;
     
     span {
       display: block;
-      text-shadow: $green 5px 0 3rem;
-      &:first-child {
-        padding-right: 5%;
-      }
       &:last-child {
         @extend .text-stroke;
         @extend .stroke-white;
@@ -114,12 +114,14 @@ const props = defineProps({
   .h2-alt {
     margin-top: 40px;
     align-self: flex-end;
-    animation: fadeIn 1.4s forwards 0.9s ease-in;
+    animation: fadeIn 1.3s forwards 0.9s ease-in;
   }
 
-  @media (max-width: 767px) {
-    .h2-alt {
-      align-self: unset;
+  @media (min-width: 768px) {
+    .h1 {
+      span:first-child {
+        padding-right: 5%;
+      }
     }
   }
 
