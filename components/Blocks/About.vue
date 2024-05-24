@@ -1,23 +1,26 @@
 <template>
-  <section v-if="block.blurbs" class="block-padding bottom-line" ref="blockRef">
-  
-    <div class="container text-white">
-      <PartialsTitle :title="block.title" class="mb-20" />
-      <div class="slides" ref="copyRef">
+  <section v-if="block.blurbs" class="block-padding">
+    <GlobalImage
+      class="background-cover absolute-cover"
+      load="lazy"
+      :size="1000"
+      :gImage="block.Image.image"
+    />
+
+    <div class="container">
+    <PartialsTitle :title="block.title" class="text-black mb-80" />
+      <div class="copy-container">
         <div
           class="copy"
-          ref="slidesRef"
           v-for="(blurb, index) in block.blurbs"
           :key="`copy-${index}`"
-          :data-num="index"
-      
+          ref="slidesRef"
         >
-          <div class="paragraph large">
+          <div class="paragraph">
             <SanityContent :blocks="blurb.copy" />
           </div>
+        </div>
       </div>
-      </div>
-        
     </div>
   </section>
 </template>
@@ -25,118 +28,77 @@
 
 
 <script setup>
-
 const props = defineProps({
   block: Object,
   required: true
 })
 
-const slidesRef = ref(null);
-const bounds = ref(0);
-const boundsTop = ref(0);
-const boundsHeight = ref(0);
-const copyRef = ref(0);
-// Scroll Top
-const windowStore = useWindowStore();
-const scrollTop = computed(() => {
-    return windowStore.scrollTop;
-});
-
-// Track Progress
-
-const progress = computed(() => {
-  let prog = 0;
-  let start = boundsTop.value + scrollTop.value;
-  let end = start + boundsHeight.value;
-
-  if (scrollTop.value >= start && scrollTop.value <= end) {
-    prog = (scrollTop.value / end);
-    if (prog < 0) prog = 0;
-    if (prog > 1) prog = 1;
-  }
-  return prog;
-});
-
-const updateProgress = () => {
-  if (active.value) {
-      let bounds = copyRef.value.getBoundingClientRect();
-      boundsTop.value = bounds.top;
-      boundsHeight.value = bounds.height;
-  }
-};
-
-watch(scrollTop, (newScrollTop) => {
-  updateProgress();
-});
-
-// Intersection Observer
-const observer = ref(null)
+const currentIndex = ref(0);
+const observer = ref(null);
+const slidesRef = ref([]);
 const blockRef = ref(null);
-const active = ref(false);
 
 const initObserver = () => {
+  const options = { threshold: .6 };
   let obs = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        active.value = entry.isIntersecting;
-    });
+      if (entry.isIntersecting) {
+        entry.target.classList.add("showing");
+      } else {
+      }
+    }, options);
   });
-  obs.observe(blockRef.value);
+
+  slidesRef.value.forEach((el) => {
+    obs.observe(el);
+  });
   observer.value = obs;
 };
 
 onMounted(() => {
   if (process.client) initObserver();
 });
-
-onUnmounted(() => {
-  if (observer.value) observer.value.disconnect();
-})
 </script>
 
 
 <style lang="scss">
 .block-about {
-
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-  .fade-enter-to, .fade-leave {
-    opacity: 1;
-  }
-
-  .fade-enter-active, .fade-leave-active {
-    transition: .5s linear;
-  }
-
-  .container {
-    position: relative;
-    z-index: 3;
-  }
+  position: relative;
+  background: rgba($white, 0.9);
+  color: $black;
+  transform: translate3d(0, 0, 0); // for safari support mix blend mode
 
   .copy {
-
-    .paragraph {
-      max-width: 52rem;
-    }
-    
-    &:first-child {
-
+    transition: transform .6s ease,  opacity .9s ease;
+    &:nth-child(even) {
+      margin-left: auto;
+      margin-top: 40px;
     }
 
-    &:last-child {
-      .paragraph {
-        margin-left: auto;
+    @media (min-width: 768px) {
+      max-width: 50rem;
+
+      &:nth-child(even) {
+        margin-top: 60px;
       }
+    }
+
+    &:not(.showing) {
+      opacity: 0;
+      transform: translate3d(0,60px,0);
+
+    }
+    &.showing {
+      opacity: 1;
+      transform: translate3d(0,0,0);
     }
   }
 
-
-  @keyframes grow {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(2);
+  .global-image {
+    mix-blend-mode: screen;
+    img {
+      filter: grayscale(100%);
+      object-position: 40% top !important;
     }
   }
 }

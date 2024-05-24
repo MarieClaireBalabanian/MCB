@@ -3,7 +3,7 @@
     <div class="container">
       <GlobalFocusTrap :enabled="open" class="trap-wrapper">
         <nav class="items-container" @keyup.esc="closeNav('esc')" aria-label="Main Navigation">
-          <NuxtLink :to="'/'" class="logo text-stroke stroke-teal" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
+          <NuxtLink :to="'/'" class="logo" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
             MC
           </NuxtLink>
 
@@ -27,7 +27,7 @@
               <div class="inner-menu" tabindex="-1" id="inner-menu" aria-label="Expanded Navigation">
                 <ul class="items">
                   <li v-for="(item, index) in menu" :key="`nav-${index}`">
-                    <NuxtLink class="h2-alt text-redpink" @click.prevent="closeNav" :to="item.slug" :tabindex="open ? 0 : -1">
+                    <NuxtLink class="h2-alt" @click.prevent="closeNav" :to="item.slug" :tabindex="open ? 0 : -1">
                       {{ item.title }}
                     </NuxtLink>
                   </li>
@@ -88,6 +88,7 @@
 
 <style lang="scss">
   .global-header {
+    color: $white;
     position: fixed;
     top: 0;
     left: 0;
@@ -107,9 +108,8 @@
       font-family: $title;
       position: relative;
       z-index: 999;
-      font-size: 20px;
+      font-size: 22px;
       border-bottom: 1px solid transparent;
-      text-shadow: 5px 1px;
     }
 
     .button-wrapper {
@@ -131,7 +131,7 @@
 
       .bar {
         transition: 0.25s ease 0.2s;
-        stroke: $teal;
+        stroke: $white;
       }
     }
 
@@ -215,7 +215,7 @@
 
           &:hover,
           &:focus {
-            border-color: $redpink;
+            border-color: $white;
           }
         }
       }

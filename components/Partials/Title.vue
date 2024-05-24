@@ -1,5 +1,5 @@
 <template> 
-  <h2 class="section-title h2 text-teal" ref="titleRef">
+  <h2 class="section-title h2" ref="titleRef">
     {{ title }}
   </h2>
 </template>
@@ -44,6 +44,7 @@ onUnmounted(() =>{
 
 <style lang="scss">
 .section-title {
+  color: $white;
   opacity: 0;
   transform: scaleY(.2);
   transition: .9s transform ease, .8s opacity;

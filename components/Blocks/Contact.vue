@@ -1,8 +1,8 @@
 <template>
-  <section class="block-padding">
-    <div class="container narrow">
-      <div class="half copy mb-40 text-center">
-        <PartialsTitle :title="block.title" class="mb-20" />
+  <section class="block-padding bottom-line">
+    <div class="container">
+      <div class="half copy mb-20">
+        <PartialsTitle :title="block.title" class="mb-40" />
         <div class="paragraph">
           <SanityContent :blocks="block.contact_copy" />
         </div>
@@ -195,9 +195,8 @@ async function send() {
 
 <style lang="scss">
 .block-contact {
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
+  .fields {
+    grid-gap: 15px;
   }
 
   .form-errors {
@@ -218,19 +217,31 @@ async function send() {
   }
 
   .copy {
+    padding-top: 2rem;
     .paragraph {
       width: 90%;
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 900px) {
+    .container {
+      display: flex;
+      justify-content: space-between;
+      .half {
+        width: calc(50% - 40px);
+
+        &.copy {
+          overflow: hidden;
+        }
+      }
+    }
     .fields {
       max-width: 800px;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       > .form-field:not(:last-child) {
-        width: calc(50% - 10px);
+        width: calc(50% - 1rem);
       }
       > .form-field:last-child {
         width: 100%;
