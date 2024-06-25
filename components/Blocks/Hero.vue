@@ -95,18 +95,21 @@ const props = defineProps({
     z-index: 5;
   }
 
-  .heading {
-    opacity: 0;
-    filter: blur(15px);
-  }
-  .h1 {
-    animation: fadeIn 1s forwards 0.4s ease-in;
-    
+  .h1 {    
     span {
       display: block;
+      opacity: 0;
+
       &:last-child {
         @extend .text-stroke;
         @extend .stroke-white;
+        transform: translate3d(5vw, 0, 0);
+        animation: fadeIn 1.1s forwards 1s;
+
+      }
+      &:first-child {
+        transform: translate3d(-5vw, 0, 0);
+        animation: fadeIn 1s forwards .8s;
       }
     }
   }
@@ -114,7 +117,9 @@ const props = defineProps({
   .h2-alt {
     margin-top: 40px;
     align-self: flex-end;
-    animation: fadeIn 1.3s forwards 0.9s ease-in;
+    transform: translate3d(-5vw, 0, 0);
+    opacity: 0;
+    animation: fadeIn 1.4s forwards 1.4s;
   }
 
   @media (min-width: 768px) {
@@ -126,9 +131,12 @@ const props = defineProps({
   }
 
   @keyframes fadeIn {
+    75% {
+      transform: translate3d(0,0,0);
+    }
     100% {
       opacity: 1;
-      filter: blur(0);
+      transform: translate3d(0,0,0);
     }
   }
 }
