@@ -1,6 +1,6 @@
 # Portfolio, highlighting fun projects
-Built w/ Nuxt and Sanity.io, using Nuxt-img and imagekit.io for image optimization
 
+Built w/ Nuxt and Sanity.io, using Nuxt-img and imagekit.io for image optimization
 
 Make sure to install the dependencies:
 

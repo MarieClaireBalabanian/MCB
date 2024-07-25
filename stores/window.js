@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useWindowStore = defineStore('window', {
+export const useWindowStore = defineStore("window", {
   state: () => ({
     scrollTop: 0,
     isDesktop: null,

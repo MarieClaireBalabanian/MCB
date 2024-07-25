@@ -4,18 +4,18 @@ $max-container: 1400px;
   padding: 0 20px;
   width: 100%;
   @media (min-width: 768px) {
-      padding: 0 40px;
-      max-width: $max-container;
-      margin: 0 auto;
+    padding: 0 40px;
+    max-width: $max-container;
+    margin: 0 auto;
   }
 }
 
 .block-padding {
-   padding-top: 50px; 
-   padding-bottom: 50px;
-   
+  padding-top: 50px;
+  padding-bottom: 50px;
+
   @media (min-width: 768px) {
-    padding-top: 140px; 
+    padding-top: 140px;
     padding-bottom: 140px;
   }
 }

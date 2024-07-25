@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useProjectsStore = defineStore('projects', {
+export const useProjectsStore = defineStore("projects", {
   state: () => ({
     projectsData: null,
   }),
 
   getters: {
     getProjectBySlug(state) {
-      return (slug) => state.projectsData.find((project) => project.slug === slug)
+      return (slug) => state.projectsData.find((project) => project.slug === slug);
     },
   },
 

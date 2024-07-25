@@ -1,5 +1,7 @@
 <template>
-  <div class="stream" v-if="sections?.length">
+  <div
+    class="stream"
+    v-if="sections?.length">
     <component
       v-for="(block, index) in sections"
       :key="index"
@@ -9,17 +11,16 @@
       :block="block"
       class="block"
       :class="`block-${block._type.toLowerCase()}`"
-      :id="block._type.toLowerCase()"
-    >
+      :id="block._type.toLowerCase()">
     </component>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  sections: {
-    type: Array,
-    default: [],
-  },
-});
+  const props = defineProps({
+    sections: {
+      type: Array,
+      default: [],
+    },
+  });
 </script>

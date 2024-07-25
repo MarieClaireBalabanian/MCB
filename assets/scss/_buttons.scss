@@ -1,42 +1,42 @@
 button {
-    border-radius: 0;
-    border: 0;
-    background: transparent;
-    display: inline-block;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  display: inline-block;
 }
 
 .button {
-    font-size: .9rem;
-    font-weight: 600;
-    padding: .6rem .8rem .5rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    background: $redpink-dark;
-    color: $white;
-    transition:  .25s ease;
-    &:hover,
-    &:focus {
-        text-decoration: underline;
-        border-radius: .5em;
-    }
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: $redpink-dark;
+  color: $white;
+  transition: 0.25s ease;
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    border-radius: 0.5em;
+  }
 }
 
 .meta-actions {
-    position: absolute;
-    z-index: 99999999;
-    top: 8px;
-    left: 20px;
-    color: $white;
+  position: absolute;
+  z-index: 99999999;
+  top: 8px;
+  left: 20px;
+  color: $white;
 
-    a {
-        border: none;
-        color: $white;
-        text-transform: uppercase;
-        font-size: 1rem;
-        letter-spacing: 1px;
-        background: $red;
-        font-weight: 700;
-        padding: .7rem .5rem;
-    }
+  a {
+    border: none;
+    color: $white;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    background: $red;
+    font-weight: 700;
+    padding: 0.7rem 0.5rem;
+  }
 }

@@ -2,14 +2,18 @@
   <section class="block-padding bottom-line">
     <div class="container">
       <div class="half copy mb-20">
-        <PartialsTitle :title="block.title" class="mb-40" />
+        <PartialsTitle
+          :title="block.title"
+          class="mb-40" />
         <div class="paragraph">
           <SanityContent :blocks="block.contact_copy" />
         </div>
       </div>
 
       <div class="half form">
-        <form @submit.prevent="submit" aria-label="Send us a mesage">
+        <form
+          @submit.prevent="submit"
+          aria-label="Send us a mesage">
           <Transition name="list">
             <div
               id="form-errors"
@@ -17,17 +21,14 @@
               class="form-errors mb-40"
               v-if="srOnlyErrors.length"
               aria-atomic="true"
-              aria-live="agressive"
-            >
+              aria-live="agressive">
               <ol
                 class="text-red paragraph-small"
-                aria-label="Form Errors"
-              >
+                aria-label="Form Errors">
                 <li
                   class="text-left"
                   v-for="(error, index) in srOnlyErrors"
-                  :key="`error-${index}`"
-                >
+                  :key="`error-${index}`">
                   {{ index + 1 }}. {{ error }}
                 </li>
               </ol>
@@ -42,8 +43,7 @@
               :error="formInputs.name.errors"
               name="name"
               autocomplete="name"
-              required
-            />
+              required />
             <GlobalInput
               v-model="formInputs.email.val"
               :label="formInputs.email.label"
@@ -51,8 +51,7 @@
               :error="formInputs.email.errors"
               name="email"
               autocomplete="email"
-              required
-            />
+              required />
 
             <GlobalInput
               v-model="formInputs.message.val"
@@ -61,8 +60,7 @@
               :error="formInputs.message.errors"
               name="message"
               inputType="textarea"
-              required
-            />
+              required />
           </div>
 
           <div class="actions text-center">
@@ -70,8 +68,7 @@
               type="submit"
               :disabled="submitting"
               ref="submitButton"
-              class="button"
-            >
+              class="button">
               {{ submitting ? "Submitting" : "Submit" }}
             </button>
           </div>
@@ -80,8 +77,7 @@
             role="status"
             class="success-message text-center text-white h3"
             tabindex="-1"
-            ref="successMessageRef"
-          >
+            ref="successMessageRef">
             Thanks for reaching out!
           </p>
         </form>
@@ -91,172 +87,170 @@
 </template>
 
 <script setup>
-import validators from "~/composables/validators";
-import { scrollTo } from "../../composables/scrollTo.js";
+  import validators from "~/composables/validators";
+  import { scrollTo } from "../../composables/scrollTo.js";
 
-const props = defineProps({
-  block: Object,
-  required: true
-})
+  const props = defineProps({
+    block: Object,
+    required: true,
+  });
 
-const requiredFields = ["name", "email", "message"];
-const srOnlyErrors = ref([]);
-const formErrorsRef = ref(null);
+  const requiredFields = ["name", "email", "message"];
+  const srOnlyErrors = ref([]);
+  const formErrorsRef = ref(null);
 
-const formInputs = ref({
-  email: {
-    val: "",
-    errors: null,
-    validators: [validators.email, validators.required],
-    label: "Email",
-  },
-  name: {
-    val: "",
-    errors: null,
-    validators: [validators.required],
-    label: "Name",
-  },
-  message: {
-    val: "",
-    errors: null,
-    validators: [validators.required],
-    label: "Message",
-  },
-});
+  const formInputs = ref({
+    email: {
+      val: "",
+      errors: null,
+      validators: [validators.email, validators.required],
+      label: "Email",
+    },
+    name: {
+      val: "",
+      errors: null,
+      validators: [validators.required],
+      label: "Name",
+    },
+    message: {
+      val: "",
+      errors: null,
+      validators: [validators.required],
+      label: "Message",
+    },
+  });
 
-const submitting = ref(false);
-const success = ref(false);
-const successMessageRef = ref(null);
+  const submitting = ref(false);
+  const success = ref(false);
+  const successMessageRef = ref(null);
 
+  // TODO: this could be a composable
+  const validateForm = () => {
+    let valid = true;
+    // Validates the whole form, including unique required validation
+    requiredFields.forEach((fieldName) => {
+      formInputs.value[fieldName].errors = null;
+      if (!validators.required.fn(formInputs.value[fieldName].val)) {
+        valid = false;
+        let message = `${formInputs.value[fieldName].label} is required.`;
+        formInputs.value[fieldName].errors = message;
+        srOnlyErrors.value.push(message);
+      } else {
+        formInputs.value[fieldName].validators.forEach((validator) => {
+          if (!validator.fn(formInputs.value[fieldName].val)) {
+            valid = false;
+            formInputs.value[fieldName].errors = validator.message;
+            srOnlyErrors.value.push(validator.message);
+          }
+        });
+      }
+    });
+    return valid;
+  };
 
-
-// TODO: this could be a composable
-const validateForm = () => {
-  let valid = true;
-  // Validates the whole form, including unique required validation
-  requiredFields.forEach((fieldName) => {
-    formInputs.value[fieldName].errors = null;
-    if (!validators.required.fn(formInputs.value[fieldName].val)) {
-      valid = false;
-      let message = `${formInputs.value[fieldName].label} is required.`;
-      formInputs.value[fieldName].errors = message;
-      srOnlyErrors.value.push(message);
+  const submit = () => {
+    srOnlyErrors.value = [];
+    submitting.value = true;
+    if (validateForm()) {
+      send();
+      success.value = true;
+      submitting.value = false;
+      nextTick(() => {
+        successMessageRef.value.focus();
+        requiredFields.forEach((fieldName) => {
+          formInputs.value[fieldName].val = "";
+        });
+      });
     } else {
-      formInputs.value[fieldName].validators.forEach((validator) => {
-        if (!validator.fn(formInputs.value[fieldName].val)) {
-          valid = false;
-          formInputs.value[fieldName].errors = validator.message;
-          srOnlyErrors.value.push(validator.message);
-        }
+      success.value = false;
+      submitting.value = false;
+      nextTick(() => {
+        scrollTo("form-errors", "smooth");
       });
     }
-  });
-  return valid;
-};
+  };
 
-const submit = () => {
-  srOnlyErrors.value = [];
-  submitting.value = true;
-  if (validateForm()) {
-    send();
-    success.value = true;
-    submitting.value = false;
-    nextTick(() => {
-      successMessageRef.value.focus();
-      requiredFields.forEach((fieldName) => {
-        formInputs.value[fieldName].val = "";
+  async function send() {
+    const data = {
+      name: formInputs.value.name.val,
+      email: formInputs.value.email.val,
+      message: formInputs.value.message.val,
+    };
+    await $fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then(() => {})
+      .catch((error) => {
+        console.error("contact form error: ", error);
       });
-    });
-  } else {
-    success.value = false;
-    submitting.value = false;
-    nextTick(() => {
-      scrollTo('form-errors', 'smooth');
-    });
   }
-};
-
-async function send() {
-  const data = {
-    name: formInputs.value.name.val,
-    email: formInputs.value.email.val,
-    message: formInputs.value.message.val,
-  }
-  await $fetch("/api/contact", {
-    method: "POST",
-    body: JSON.stringify(data),
-  })
-  .then(() => {})
-  .catch((error) => {
-    console.error("contact form error: ", error);
-  });
-}
 </script>
 
 <style lang="scss">
-.block-contact {
-  .fields {
-    grid-gap: 15px;
-  }
-
-  .form-errors {
-    text-align: center;
-    outline: none;
-
-    ol {
-      display: inline-block;
-      width: auto;
-      background: $red;
-      padding: 10px 30px;
-      color: $white;
+  .block-contact {
+    .fields {
+      grid-gap: 15px;
     }
-  }
 
-  .success-message {
-    margin-top: 30px;
-  }
+    .form-errors {
+      text-align: center;
+      outline: none;
 
-  .copy {
-    padding-top: 2rem;
-    .paragraph {
-      width: 90%;
+      ol {
+        display: inline-block;
+        width: auto;
+        background: $red;
+        padding: 10px 30px;
+        color: $white;
+      }
     }
-  }
 
-  @media (min-width: 900px) {
-    .container {
-      display: flex;
-      justify-content: space-between;
-      .half {
-        width: calc(50% - 40px);
+    .success-message {
+      margin-top: 30px;
+    }
 
-        &.copy {
-          overflow: hidden;
+    .copy {
+      padding-top: 2rem;
+      .paragraph {
+        width: 90%;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .container {
+        display: flex;
+        justify-content: space-between;
+        .half {
+          width: calc(50% - 40px);
+
+          &.copy {
+            overflow: hidden;
+          }
+        }
+      }
+      .fields {
+        max-width: 800px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        > .form-field:not(:last-child) {
+          width: calc(50% - 1rem);
+        }
+        > .form-field:last-child {
+          width: 100%;
         }
       }
     }
-    .fields {
-      max-width: 800px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      > .form-field:not(:last-child) {
-        width: calc(50% - 1rem);
-      }
-      > .form-field:last-child {
-        width: 100%;
-      }
+
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 0.5s ease;
+    }
+    .list-enter-from,
+    .list-leave-to {
+      opacity: 0;
+      transform: translateX(-30px);
     }
   }
-
-  .list-enter-active,
-  .list-leave-active {
-    transition: all 0.5s ease;
-  }
-  .list-enter-from,
-  .list-leave-to {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-}
 </style>

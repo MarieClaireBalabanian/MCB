@@ -1,107 +1,108 @@
 $header-height: 45px;
 
 .grid {
-    display: grid;
-    grid-gap: 20px;
+  display: grid;
+  grid-gap: 20px;
 }
 
 // @media (min-width: 768px) {
 @for $i from 1 through 5 {
-    .grid-#{$i} {
-        grid-template-columns: repeat($i, minmax(0, #{$i}fr));
-    }
+  .grid-#{$i} {
+    grid-template-columns: repeat($i, minmax(0, #{$i}fr));
+  }
 }
 
 .absolute-cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .text-right {
-    text-align: right;
+  text-align: right;
 }
 
 .text-left {
-    text-align: left;
+  text-align: left;
 }
 
 .mb-20 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .mb-40 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    @media (min-width: 768px) {
-        margin-bottom: 40px;
-    }
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
+  }
 }
 
 .mb-80 {
-    margin-bottom: 40px;
-    @media (min-width: 768px) {
-        margin-bottom: 80px;
-    }
+  margin-bottom: 40px;
+  @media (min-width: 768px) {
+    margin-bottom: 80px;
+  }
 }
 
 .mb-120 {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 
-    @media (min-width: 768px) {
-        margin-bottom: 120px;
-    }
+  @media (min-width: 768px) {
+    margin-bottom: 120px;
+  }
 }
 
 .bg-black {
-    background: $black;
-    color: $white;
+  background: $black;
+  color: $white;
 }
 
 %pseudo {
-    display: block;
-    content: '';
-    position: absolute;
+  display: block;
+  content: "";
+  position: absolute;
 }
 
 .pseudo-before-after {
-    position: relative;
-    &::before, &::after {
-        @extend %pseudo;
-    }
+  position: relative;
+  &::before,
+  &::after {
+    @extend %pseudo;
+  }
 }
 
 .pseudo-before {
-    position: relative;
-    &::before {
-        @extend %pseudo;
-    }   
+  position: relative;
+  &::before {
+    @extend %pseudo;
+  }
 }
 
 .pseudo-after {
-    position: relative;
-    &::after {
-        @extend %pseudo;
-    }   
+  position: relative;
+  &::after {
+    @extend %pseudo;
+  }
 }
 
-.bottom-line {  
-    position: relative;
-    @extend .pseudo-after;
-    &::after {
-        background: rgba(255,255,255,.4);
-        left: 30%;
-        right: 30%;
-        height: 1px;
-        bottom:  0;
-        border-radius: 50%;
-        z-index: 9;
-    }
+.bottom-line {
+  position: relative;
+  @extend .pseudo-after;
+  &::after {
+    background: rgba(255, 255, 255, 0.4);
+    left: 30%;
+    right: 30%;
+    height: 1px;
+    bottom: 0;
+    border-radius: 50%;
+    z-index: 9;
+  }
 }

@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  project: Object,
-});
+  const props = defineProps({
+    project: Object,
+  });
 </script>

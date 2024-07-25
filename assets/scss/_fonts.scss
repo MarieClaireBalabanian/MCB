@@ -1,38 +1,37 @@
-$fontBase: '@/assets/fonts';
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+$fontBase: "@/assets/fonts";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
 
- // Major Mono
-
-@font-face {
-  font-family: 'Major Mono Display';
-  src: url(#{$fontBase}/major-mono-display-v16-latin-regular.woff2) format('woff2'); 
-  font-display: swap; 
-  font-style: normal;
-  font-weight: 400;
-  
-}
+// Major Mono
 
 @font-face {
-  font-family: 'Horizon';
-  src: url(#{$fontBase}/horizon.woff) format('woff'),
-  url(#{$fontBase}/horizon.otf) format('otf'); 
-  font-display: swap; 
+  font-family: "Major Mono Display";
+  src: url(#{$fontBase}/major-mono-display-v16-latin-regular.woff2) format("woff2");
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Horizon';
-  src: url(#{$fontBase}/horizon_outlined.otf) format('otf'); 
-  font-display: swap; 
+  font-family: "Horizon";
+  src:
+    url(#{$fontBase}/horizon.woff) format("woff"),
+    url(#{$fontBase}/horizon.otf) format("otf");
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "Horizon";
+  src: url(#{$fontBase}/horizon_outlined.otf) format("otf");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
 
-$sans: 'Helvetica', 'sans-serif';
+$sans: "Helvetica", "sans-serif";
 
-$major-mono:  'Major Mono Display', $sans;
-$body: 'Outfit', $sans;
+$major-mono: "Major Mono Display", $sans;
+$body: "Outfit", $sans;
 
-$title: 'Horizon', $body;
+$title: "Horizon", $body;

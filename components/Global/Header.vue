@@ -1,33 +1,85 @@
 <template>
-  <header class="global-header" :class="{ open: open, bg: showBg }" id="header">
+  <header
+    class="global-header"
+    :class="{ open: open, bg: showBg }"
+    id="header">
     <div class="container">
-      <GlobalFocusTrap :enabled="open" class="trap-wrapper">
-        <nav class="items-container" @keyup.esc="closeNav('esc')" aria-label="Main Navigation">
-          <NuxtLink :to="'/'" class="logo" @click.prevent="closeNav" aria-label="Marie-Claire Balabanian - Homepage">
+      <GlobalFocusTrap
+        :enabled="open"
+        class="trap-wrapper">
+        <nav
+          class="items-container"
+          @keyup.esc="closeNav('esc')"
+          aria-label="Main Navigation">
+          <NuxtLink
+            :to="'/'"
+            class="logo"
+            @click.prevent="closeNav"
+            aria-label="Marie-Claire Balabanian - Homepage">
             MC
           </NuxtLink>
 
           <div class="button-wrapper">
-            <button id="menu-toggle" aria-haspopup="true" class="hamburger" ref="hamburgerRef" @click="toggleNav"
+            <button
+              id="menu-toggle"
+              aria-haspopup="true"
+              class="hamburger"
+              ref="hamburgerRef"
+              @click="toggleNav"
               :aria-expanded="open.toString()">
               <span class="sr-only">{{ hamburgerSR }}</span>
-              <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="19"
-                viewBox="0 0 22 19" fill="none">
-                <path class="bar-1 bar" d="M1 1.5H21" stroke="black" stroke-width="1.5" stroke-linecap="round" />
-                <path class="bar-2 bar" d="M1 9.5H21" stroke="black" stroke-width="1.5" stroke-linecap="round" />
-                <path class="bar-3 bar" d="M1 17.5H21" stroke="black" stroke-width="1.5" stroke-linecap="round" />
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="19"
+                viewBox="0 0 22 19"
+                fill="none">
+                <path
+                  class="bar-1 bar"
+                  d="M1 1.5H21"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round" />
+                <path
+                  class="bar-2 bar"
+                  d="M1 9.5H21"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round" />
+                <path
+                  class="bar-3 bar"
+                  d="M1 17.5H21"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="round" />
               </svg>
             </button>
           </div>
 
-          <div class="bg" :class="{ show: open, hide: !open }"></div>
+          <div
+            class="bg"
+            :class="{ show: open, hide: !open }"></div>
 
-          <div class="items-wrapper" :class="{ show: open, hide: !open }"> 
+          <div
+            class="items-wrapper"
+            :class="{ show: open, hide: !open }">
             <div class="container">
-              <div class="inner-menu" tabindex="-1" id="inner-menu" aria-label="Expanded Navigation">
+              <div
+                class="inner-menu"
+                tabindex="-1"
+                id="inner-menu"
+                aria-label="Expanded Navigation">
                 <ul class="items">
-                  <li v-for="(item, index) in menu" :key="`nav-${index}`">
-                    <NuxtLink class="h2-alt" @click.prevent="closeNav" :to="item.slug" :tabindex="open ? 0 : -1">
+                  <li
+                    v-for="(item, index) in menu"
+                    :key="`nav-${index}`">
+                    <NuxtLink
+                      class="h2-alt"
+                      @click.prevent="closeNav"
+                      :to="item.slug"
+                      :tabindex="open ? 0 : -1">
                       {{ item.title }}
                     </NuxtLink>
                   </li>
@@ -44,7 +96,7 @@
 <script setup>
   import { useWindowStore } from "@/stores/window";
 
-  const hamburgerRef = ref(null)
+  const hamburgerRef = ref(null);
 
   const windowStore = useWindowStore();
   const showBg = computed(() => {
@@ -74,10 +126,10 @@
   const closeNav = (action) => {
     open.value = false;
     document.body.classList.remove("lock-scroll");
-    if (action === 'esc') {
+    if (action === "esc") {
       nextTick(() => {
         hamburgerRef.value.focus();
-      })
+      });
     }
   };
 
@@ -94,13 +146,15 @@
     left: 0;
     width: 100vw;
     z-index: 999;
-    transition: background .4s ease, color .4s ease;
+    transition:
+      background 0.4s ease,
+      color 0.4s ease;
 
     &.bg {
       background: $black;
     }
 
-    >.container {
+    > .container {
       height: $header-height;
     }
 
@@ -146,13 +200,17 @@
       &.hide {
         transform: scaleX(0);
         opacity: 0;
-        transition: transform 0.4s ease-out 0.25s, opacity 0.45s ease-out 0.45s;
+        transition:
+          transform 0.4s ease-out 0.25s,
+          opacity 0.45s ease-out 0.45s;
       }
 
       &.show {
         opacity: 1;
         transform: scaleX(1);
-        transition: transform 0.4s ease-in, opacity 0.45s ease;
+        transition:
+          transform 0.4s ease-in,
+          opacity 0.45s ease;
       }
     }
 
@@ -183,9 +241,8 @@
       &.show {
         ul {
           opacity: 1;
-          transform: translate3d(0,0,0);
-          transition: .6s ease .7s;
-
+          transform: translate3d(0, 0, 0);
+          transition: 0.6s ease 0.7s;
         }
       }
 
@@ -193,8 +250,8 @@
         pointer-events: none;
         ul {
           opacity: 0;
-          transform: translate3d(0,200px,0);
-          transition: .4s ease;
+          transform: translate3d(0, 200px, 0);
+          transition: 0.4s ease;
         }
       }
 
