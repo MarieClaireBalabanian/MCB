@@ -10,11 +10,12 @@
     <div class="container text-right">
       <h1
         class="h1 heading"
-        v-html="block.title"></h1>
+        v-html="block.title">
+      </h1>
       <h2 class="h2-alt heading text-redpink text-right">{{ block.subtitle }}</h2>
       <ul class="social">
-        <li><a href="https://www.linkedin.com/in/marie-claire-balabanian/" target="_blank"><SvgsLinkedIn /></a></li>
-        <li><a href="https://github.com/MarieClaireBalabanian" target="_blank"><SvgsGithub /></a></li>
+        <li><a href="https://www.linkedin.com/in/marie-claire-balabanian/" target="_blank" aria-label="LinkedIn Page"><SvgsLinkedIn /></a></li>
+        <li><a href="https://github.com/MarieClaireBalabanian" target="_blank" aria-label="Github Profile"><SvgsGithub /></a></li>
       </ul>
     </div>
   </section>
