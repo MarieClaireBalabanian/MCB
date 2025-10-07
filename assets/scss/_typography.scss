@@ -13,6 +13,10 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-family: $title;
+
+  &.text-stroke {
+    -webkit-text-stroke-width: clamp(1px, 0.035em, 2px);
+  }
 }
 
 .h2 {
