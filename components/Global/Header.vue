@@ -106,7 +106,6 @@
   const menu = [
     { title: "Work", slug: "/#work" },
     { title: "About", slug: "/#about" },
-    { title: "Contact", slug: "/#contact" },
   ];
 
   const open = ref(false);

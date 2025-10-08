@@ -10,20 +10,18 @@
       </div>
       <PartialsTech
         :skills="block.skills"
-        />
+        animate />
     </div>
   </section>
 </template>
 
 <script setup>
   const props = defineProps({
-    block: Object,
-    required: true,
+    block: {
+      type: Object,
+      required: true,
+    },
   });
 </script>
 
-<style lang="scss">
-  .block-skills {
-
-  }
-</style>
+<style lang="scss"></style>

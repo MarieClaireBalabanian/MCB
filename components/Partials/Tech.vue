@@ -1,13 +1,12 @@
 <template>
 	<ul
-		class="tech"
+		:class="`tech ${animate ? 'animated' : ''}`"
 		ref="listRef">
 		<li
 			:class="`text-center li-${index} ${getIndexClass(index)}`"
-			class="paragraph"
 			v-for="(item, index) in skills"
 			:key="`tech-${index}`">
-			<span class="h2-alt">{{ item }}</span>
+			<span>{{ item }}</span>
 		</li>
 	</ul>
 </template>
@@ -15,19 +14,26 @@
 <script setup>
 const props = defineProps({
 	skills: Array,
+	animate: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const observer = ref(null);
 const listRef = ref(null);
 
+const { animate } = toRefs(props);
+
 const getIndexClass = (index) => {
+  if (!animate.value) return "";
 	const classes = [
     "text-white",
     "text-stroke stroke-teal",
     "text-teal",
 		"text-stroke stroke-white",
 	];
-	return classes[index % classes.length];
+	return classes[index % classes.length] + " h2-alt animate";
 };
 
 const initObserver = () => {
@@ -40,13 +46,12 @@ const initObserver = () => {
 			}
 		}, options);
 	});
-
 	obs.observe(listRef.value);
 	observer.value = obs;
 };
 
 onMounted(() => {
-	if (process.client) initObserver();
+	if (process.client && animate.value) initObserver();
 });
 </script>
 
@@ -57,12 +62,23 @@ onMounted(() => {
   justify-content: center;
 	gap: 2rem;
 
-	li {
-		transition: opacity 0.8s ease-out;
-		opacity: 0;
+  &:not(.animated) {
+    justify-content: flex-start;
+    gap: .7rem;
+  }
 
-    &.text-stroke {
-      -webkit-text-stroke-width: clamp(2px, 0.035em, 3px);
+	li {
+    &:not(.animate) {
+      background: $redpink;
+      color: $white;
+      border-radius: 0.2em;
+      padding: 0.2em 1em;
+      @extend .paragraph;
+    }
+    &.animate {
+      -webkit-text-stroke-width: clamp(1px, 0.035em, 2px);
+      transition: opacity 0.8s ease-out;
+      opacity: 0;
     }
 	}
 
