@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
       console.error(error);
     });
   } catch (error) {
-    console.log("ERROR", error);
+    // console.log("ERROR", error);
     res.status(400).send("error");
   }
 });

@@ -63,6 +63,15 @@ body {
   }
 }
 
+
+.h4 {
+  font-family: $title;
+  font-size: .5rem;
+  @media (min-width: 1024px) {
+    font-size: .8rem;
+  }
+}
+
 .text-stroke {
   -webkit-text-stroke-width: clamp(1px, 0.035em, 2px);
   min-height: 0.00000001vw; // Safari hack
