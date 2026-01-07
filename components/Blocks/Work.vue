@@ -43,9 +43,10 @@
               </p>
 
               <div class="actions">
-                <!-- nix moal for dedicated detail page -->
+                <!-- nix modal for dedicated detail page -->
                 <!-- <GlobalModal :project="project" /> -->
                 <NuxtLink
+                  v-if="project.slug?.current"
                   class="button"
                   :to="`/${project.slug.current}`"
                   :aria-label="`Learn more about ${project.title}`"
