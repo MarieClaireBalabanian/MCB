@@ -22,15 +22,10 @@
       description,
       gallery,
       video,
+      website,
       portrait
     }`;
   const { data } = await useSanityQuery(query, { topic: "project" });
-  const fetchedData = JSON.parse(JSON.stringify(data.value))[0];
-
-  if (fetchedData) {
-    fetchedData.aspectRatio = getVideoAspectRatio(fetchedData.video);
-  }
-
-  pageData.value = fetchedData;
+  pageData.value = JSON.parse(JSON.stringify(data.value))[0];
   if (!pageData.value) router.push({ path: "/" });
 </script>
