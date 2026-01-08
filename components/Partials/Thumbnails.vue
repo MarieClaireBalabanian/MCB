@@ -4,7 +4,8 @@
     ref="blockRef">
     <div
       class="video-container mb-40"
-      v-if="project.video">
+      v-if="project.video"
+      :style="{ '--aspect-ratio': getVideoAspectRatio(project.video) }">
       <div
         class="iframe"
         v-html="project.video"></div>
@@ -26,6 +27,7 @@
 </template>
 
 <script setup>
+  import { getVideoAspectRatio } from '@/composables/videoUtils';
   const props = defineProps({
     project: {
       type: Object,
@@ -58,14 +60,14 @@
       height: 0;
       overflow: hidden;
       width: 100%;
-      padding-top: 30.08%;
-      iframe {
-        position: absolute;
-        inset: 0 0 0 0;
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-      }
+      padding-top: var(--aspect-ratio);
+    }
+    iframe {
+      position: absolute;
+      inset: 0 0 0 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
   }
 </style>

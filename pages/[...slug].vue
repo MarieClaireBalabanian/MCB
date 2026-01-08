@@ -21,9 +21,16 @@
       tech,
       description,
       gallery,
+      video,
       portrait
     }`;
   const { data } = await useSanityQuery(query, { topic: "project" });
-  pageData.value = JSON.parse(JSON.stringify(data.value))[0];
+  const fetchedData = JSON.parse(JSON.stringify(data.value))[0];
+
+  if (fetchedData) {
+    fetchedData.aspectRatio = getVideoAspectRatio(fetchedData.video);
+  }
+
+  pageData.value = fetchedData;
   if (!pageData.value) router.push({ path: "/" });
 </script>

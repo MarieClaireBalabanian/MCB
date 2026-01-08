@@ -5,8 +5,6 @@
         :title="block.title"
         class="mb-20" />
       <ul>
-        <!-- using mouseover and mouseleave allows for tapping on mobile to reveal content without navigation.
-        :hover alone will not. -->
         <li
           v-for="(project, index) in data"
           :data-id="index"
@@ -26,10 +24,11 @@
               :size="600"
               load="lazy" />
             <GlobalImage
-              logo
               v-if="project.image"
+              logo
               :gImage="project.image.image"
               class="logo contain"
+              :class="project.slug?.current"
               load="lazy"
               :size="600" />
           </div>
@@ -95,6 +94,7 @@
     &.block-padding {
       padding-top: 100px;
     }
+
     .container {
       position: relative;
       z-index: 4;
@@ -127,6 +127,14 @@
           height: 50px;
           transition: 0.8s ease 1s;
           filter: grayscale(100%) brightness(0) invert(1) drop-shadow(0 0 0.7rem $black);
+
+          &.samson-technologies-inc {
+            height: 40px;
+          }
+
+          &.lincoln-center-new-york-philharmonic {
+            height: 80px;
+          }
         }
 
         .copy {
@@ -169,8 +177,9 @@
         padding-top: 200px;
       }
       ul {
-        columns: 2;
-        column-gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px 16px;
         li {
           min-height: 250px;
         }
